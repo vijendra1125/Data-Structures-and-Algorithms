@@ -1,0 +1,20 @@
+week 1:
+    Book:
+	http://learningalgorithms.tilda.ws/?utm_source=coursera&utm_media=reading
+
+    Pre-requisite:
+        Basic knowledge of programming language
+        Basic knowledge of discrete mathematics: proof by induction, proof by contradiction
+            Recommended course specialization: 
+            https://www.coursera.org/specializations/discrete-mathematics?utm_source=algoreading#courses
+
+Stress testing:
+	Test on the examples from the problem statement. Then make a few other small test, solve them manually and check that your program output the correct answer. Generate a big input and launch your program to heck that it works fast enough and doesn’t consume too much memory. Test for corner cases: smallest allowed value and largest allowed value of all input parameters, equal numbers in the input, very long strings etc. Then make stress test.
+	
+	The authors of the problem do basically the same when they make the test sets for you. They make some manual tests, they make tests with big numbers for integer flow, they make big tests for checking time limit, and then they generate some random tests and maybe some focused random tests.
+
+week 2:
+For any integer 𝑚≥2, the sequence 𝐹𝑛 mod 𝑚 is periodic. The period always starts with 01 and is known as Pisano period.
+Because of above property, to caclate Fn mod m where n is very large, find pisano period length of m then divide n by pisano period length, Freminder mod m will be equal to Fn mod m.
+
+(a+b)%n = ((a%n) + (b%n)) % n
