@@ -3,10 +3,13 @@ Books:
     - Alexander Kulikov and Pavel Pevzner. Learning Algorithms through Programming and Puzzle Solving. 2018.
     - Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
     - Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
+    - Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
+
 Pre-requisite:
     Basic knowledge of programming language you would like to use
     Basic knowledge of discrete mathematics: proof by induction, proof by contradiction
         Recommended course specialization: https://www.coursera.org/specializations/discrete-mathematics?utm_source=algoreading#courses
+
 Testing:
     - Test on the examples from the problem statement. 
     - Then make a few other small test, solve them manually and check that your program output the correct answer. 

@@ -49,3 +49,12 @@ Pisano period:
         - F<r> mod m will be equal to F<n> mod m
     Note:
         - (a+b)%n = ((a%n) + (b%n)) % n <- use it with property of fibonacci number and itwill help you overcome integer overflow problem
+
+Additional Reading resource:
+    Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
+        - Computing Fibonacci numbers: Section 0.2
+        - Properties of Fibonacci numbers: Exercises 0.2–0.4
+        - Greatest common divisor: Section 1.2.3
+        - Big-O notation and growth rate: Section 0.3
+    Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
+        - Greatest common divisor: Section 31.2

@@ -1,0 +1,11 @@
+Subproblem is a simillar problem of smaler size. Make a small move and then solve a problem of same kind.
+A greedy algorithm is called safe move if there is an optimal solution consistent with the first move.
+General strategy for greedy algorithm:
+    - Come up with a greedy choice
+    - Prove that this greedy choice is safe move
+    - Reduce to subproblem
+    - solve the subproblem by going back to step 1
+
+Additional Reading resource:
+     Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
+        - Knapsack: Section 6.5
