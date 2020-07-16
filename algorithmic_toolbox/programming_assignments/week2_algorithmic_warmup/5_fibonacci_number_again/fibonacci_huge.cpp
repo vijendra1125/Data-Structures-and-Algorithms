@@ -18,14 +18,14 @@ long long get_fibonacci_huge_naive(long long n, long long m)
     return current % m;
 }
 
-long long pisano_period(long long m)
+int get_pisano_period_length(int m)
 {
-    long long previous = 0;
-    long long current = 1;
-    long long pisano_period_length = 0;
+    int previous = 0;
+    int current = 1;
+    int pisano_period_length = 0;
     do
     {
-        long long temp = (previous + current) % m;
+        int temp = (previous + current) % m;
         previous = current;
         current = temp;
         pisano_period_length++;
@@ -34,13 +34,13 @@ long long pisano_period(long long m)
     return pisano_period_length;
 }
 
-long long fibonacci_mod(long long n, long long m)
+int fibonacci_mod(int n, int m)
 {
-    long long previous = 0;
-    long long current = 1;
+    int previous = 0;
+    int current = 1;
     for (int i = 2; i <= n; ++i)
     {
-        long long temp = (previous + current) % m;
+        int temp = (previous + current) % m;
         previous = current;
         current = temp;
     }
@@ -49,14 +49,15 @@ long long fibonacci_mod(long long n, long long m)
 
 long long get_fibonacci_huge_fast(long long n, long long m)
 {
-    long long pisano = pisano_period(m);
-    long long reminder = n % pisano;
-    return fibonacci_mod(reminder, m);
+    int pisano_length = get_pisano_period_length(m);
+    int n_mod_pisano_length = n % pisano_length;
+    return fibonacci_mod(n_mod_pisano_length, m);
 }
 
 int main()
 {
-    long long n, m;
+    long long n;
+    int m;
     std::cin >> n >> m;
     // std::cout << get_fibonacci_huge_naive(n, m) << '\n';
     std::cout << get_fibonacci_huge_fast(n, m) << '\n';

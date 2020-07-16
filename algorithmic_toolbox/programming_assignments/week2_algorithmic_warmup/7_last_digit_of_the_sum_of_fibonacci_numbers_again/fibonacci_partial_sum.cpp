@@ -1,15 +1,19 @@
 #include <iostream>
 #include <vector>
+
 using std::vector;
 
-long long get_fibonacci_partial_sum_naive(long long from, long long to) {
+long long get_fibonacci_partial_sum_naive(long long from, long long to)
+{
     long long sum = 0;
 
     long long current = 0;
-    long long next  = 1;
+    long long next = 1;
 
-    for (long long i = 0; i <= to; ++i) {
-        if (i >= from) {
+    for (long long i = 0; i <= to; ++i)
+    {
+        if (i >= from)
+        {
             sum += current;
         }
 
@@ -21,8 +25,50 @@ long long get_fibonacci_partial_sum_naive(long long from, long long to) {
     return sum % 10;
 }
 
-int main() {
+int get_fibonacci_partial_sum_fast(long long from, long long to)
+{
+    int m = 10;
+
+    int pisano_previous = 0;
+    int pisano_current = 1;
+    int pisano_sum = 0;
+    vector<int> pisano_period;
+    pisano_period.push_back(0);
+    pisano_period.push_back(1);
+    do
+    {
+        int temp = (pisano_previous + pisano_current) % m;
+        pisano_previous = pisano_current;
+        pisano_current = temp;
+        pisano_period.push_back(pisano_current);
+        pisano_sum += pisano_current;
+    } while (!((pisano_previous == 0) && (pisano_current == 1)));
+    int pisano_length = pisano_period.size() - 2;
+
+    long long from_by_pisano_length = from / pisano_length;
+    int from_mod_pisano_length = from % pisano_length;
+    long long to_by_pisano_length = to / pisano_length;
+    int to_mod_pisano_length = to % pisano_length;
+    int to_mod_pisano_length_sum = 0;
+    for (int i = 0; i <= to_mod_pisano_length; ++i)
+    {
+        to_mod_pisano_length_sum += pisano_period[i];
+    }
+    int from_mod_pisano_length_sum = 0;
+    for (int i = 0; i < from_mod_pisano_length; ++i)
+    {
+        from_mod_pisano_length_sum += pisano_period[i];
+    }
+
+    return (((to_by_pisano_length - from_by_pisano_length) * pisano_sum) +
+            to_mod_pisano_length_sum - from_mod_pisano_length_sum) %
+           m;
+}
+
+int main()
+{
     long long from, to;
     std::cin >> from >> to;
-    std::cout << get_fibonacci_partial_sum_naive(from, to) << '\n';
+    // std::cout << get_fibonacci_partial_sum_naive(from, to) << '\n';
+    std::cout << get_fibonacci_partial_sum_fast(from, to) << '\n';
 }

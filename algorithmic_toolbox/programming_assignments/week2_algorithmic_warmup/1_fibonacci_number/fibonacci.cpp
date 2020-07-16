@@ -25,7 +25,6 @@ long long fibonacci_naive(int n)
 
 long long fibonacci_fast(int n)
 {
-    // write your code here
     long long previous = 0;
     long long current = 1;
 
@@ -55,12 +54,11 @@ void test_solution()
 
 int main()
 {
-    test_solution();
+    // test_solution();
 
     int n = 0;
-    std::cout << "your input ";
     std::cin >> n;
-    std::cout << fibonacci_naive(n) << '\n';
+    // std::cout << fibonacci_naive(n) << '\n';
     std::cout << fibonacci_fast(n) << '\n';
     return 0;
 }

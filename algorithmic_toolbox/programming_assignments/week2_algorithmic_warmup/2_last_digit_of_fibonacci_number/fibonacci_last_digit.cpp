@@ -49,12 +49,10 @@ void test_solution()
 
 int main()
 {
-    test_solution();
+    //test_solution();
 
     int n;
     std::cin >> n;
-    int naive = get_fibonacci_last_digit_naive(n);
-    int fast = get_fibonacci_last_digit_fast(n);
-    std::cout << naive << '\n';
-    std::cout << fast << '\n';
+    // std::cout << get_fibonacci_last_digit_naive(n) << '\n';
+    std::cout << get_fibonacci_last_digit_fast(n) << '\n';
 }
