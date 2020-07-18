@@ -5,6 +5,7 @@ General strategy for greedy algorithm:
     - Prove that this greedy choice is safe move
     - Reduce to subproblem
     - solve the subproblem by going back to step 1
+Good Programming assignments: 5, 7
 
 Additional Reading resource:
      Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
