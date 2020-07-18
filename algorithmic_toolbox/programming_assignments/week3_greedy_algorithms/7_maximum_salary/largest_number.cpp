@@ -28,7 +28,7 @@ vector<string> get_max_candidates(vector<string> v, int digit_position)
   return max_candidates;
 }
 
-string largest_number(vector<string> a)
+string largest_number_naive(vector<string> a)
 {
   vector<string> remaining_numbers = a;
   vector<string> arranged_numbers;
@@ -68,6 +68,26 @@ string largest_number(vector<string> a)
   return result;
 }
 
+bool sort_comp(string a, string b)
+{
+  string s1 = a.append(b);
+  string s2 = b.append(a);
+  return s1.compare(s2) > 0;
+}
+
+string largest_number_fast(vector<string> a)
+{
+  sort(a.begin(), a.end(), sort_comp);
+  std::stringstream ret;
+  for (size_t i = 0; i < a.size(); i++)
+  {
+    ret << a[i];
+  }
+  string result;
+  ret >> result;
+  return result;
+}
+
 int main()
 {
   int n;
@@ -77,5 +97,6 @@ int main()
   {
     std::cin >> a[i];
   }
-  std::cout << largest_number(a) << "\n";
+  // std::cout << largest_number_naive(a) << "\n";
+  std::cout << largest_number_fast(a) << "\n";
 }
