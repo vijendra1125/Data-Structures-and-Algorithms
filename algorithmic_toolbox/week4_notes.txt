@@ -1,0 +1,80 @@
+Divide and Conquer:
+    - Break into non-overlaping subproblems that are themselfs smaller instance of same type of problem
+    - Recursively solve the subproblems
+    - Appropriately Combine results
+
+Recurrence relation:
+    A Recurrence relation is an equation recursively defining a sequence of value. Divide-and-conquer algorithms often follow a generic pattern: they tackle a problem of size n by recursively solving, say,a subproblems of size n/b and then combining these answers in O(n^d) time, for some a;b;d > 0. Their running time can therefore be captured by the equation T(n) = a T(celling(n/b)) + O(n^d).
+
+Master theorm:
+    Provides recurrance relation to find runtime complexity of most of the divide-and-conquer procedures:
+        If T(n) = a T(celling(n/b)) + O(n^d) for some constant a>0; b>1; d>=0
+        Then,
+            T(n) = O(n^d) if d > log<b>(a)
+                 = O(n^d log(n)) if d = log<b>(a)
+                 = O(n^(log<b>(a))) if d < log<b>(a)
+
+Linear search:
+    Sequential search made over all item one-by 
+    Recurrence relation defining worst case runtime: 
+        T(n) = T(n-1) + c
+    Runtime complexity: O(n)
+
+Binary search: 
+    Works if data is in sorted form
+    Binary search looks for a particular item by comparing the middle most item of the collection. If a match occurs, then the index of item is returned. If the middle item is greater than the item, then the item is searched in the sub-array to the left of the middle item. Otherwise, the item is searched for in the sub-array to the right of the middle item. This process continues on the sub-array as well until the size of the subarray reduces to zero. 
+    Runtime compexity: O(log<2>n)
+        If we are cutting somthing of size n into half over and over again then it takes log<2>n times before we get down to 1
+
+Polynomial multipication:
+    Naive: 
+        Idea: 
+            For two polynomials of order n-1, say, 
+            a(x) = a<1>x^(n-1) + a<2>x^(n-2) + ... + a<0> and b(x) b<1>x^(n-1) + b<2>x^(n-2) + ... + b<0>
+            The product polynomial will be of order 2n-1, say,
+            c(x) = c<2n-2>x^(2n-2) + c<2n -1>x^(2n-1)+....+c<0>
+            where:
+                c<2n-2> = a<n-1>b<n-1>
+                c<2n-3> = a<n-1>b<n-2> + a<n-2>b<n-1>
+                ...
+                c<2> = a<2>b<0> + a<1>b<1> + a<0>b<2>
+                c<1> = a<1>b<0> + a<0>b<1>
+                c<0> = a<0>b<0>
+        Use above idea Using two iterative loop to calculate all the coefficients. Notice that coeffiecent c<k> is sum of all those a<i>b<j> such that i+j = k.
+        Runtime complexity: O(n^(2))
+    Naive divide and conquer: 
+        Idea: 
+            Consider two polnomials, 
+            a(x) = a<1>x^(n-1) + a<2>x^(n-2) + ... + a<0> and b(x) b<1>x^(n-1) + b<2>x^(n-2) + ... + b<0>
+            We could write,
+            a(x) = d<1>(x)x^(n/2) + d<0>(x) 
+            b(x) = e<1>(x)x^(n/2) + e<0>(x)
+            then a(x)b(x) = (d<1>e<1>)x^(n) + (d<1>e<0> + d<0>e<1>)x^(n/2) + d<0>e<0>
+            Note: we could always pad the polynomial in a way that n is multiple of 2
+        Divide problem os size n into 4 subproblem of size n/2 using above idea and keep doing it recursively till its become subproblems of size 1.
+        Hence, we could write recursive realtion as:
+            T(n) = 4T(n/2) + O(n) 
+            where O(n) is time required to evaluate expression (apart from solving subproblems)
+        Runtime complexity: O(n^(log<2>4)) or O(n^2)
+    Fast divide and conquer:
+        Idea: 
+            x = ac + ad + bc + bd involves 4 multiplications whereas same could be done with just 3 multiplication because 
+                bc + bd = (a+b)(c+d) - ac - ad
+        Divide problem into 3 sub-problem at each level using above concept
+        Hence, we could write recursive realtion as:
+            T(n) = 3T(n/2) + O(n)
+            where O(n) is time required to evaluate expression (apart from solving subproblems)
+        Runtime complexity: O(n^(log<2>3)) or O(n^(1.58)) which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above
+    Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. 
+        For two n digit numbers 
+        a = a<1>a<2>...a<n> and b = b<1>b<2>...b<n> 
+        create two polynomials 
+        a(x) = a<1>x^(n-1) + a<2>x^(n-2) + ... + a<n> and b(x) b<1>x^(n-1) + b<2>x^(n-2) + ... + b<n> respectively. 
+        Next, do polynomial multiplication c(x) = a(x)b(x). 
+        For each coefficient of c which is greated than 9, keep the digit at unit place and add 1 to the coefficient left to it. 
+        Now replace x in c(x) with 10 to get product of two digits
+
+Reading resource:
+     Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
+        - Polynomial multiplication: Section 2.1
+        - Master Theorem: Section 2.2
