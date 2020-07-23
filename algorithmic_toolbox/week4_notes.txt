@@ -19,6 +19,7 @@ Master theorm:
             T(n) = O(n^d) if d > log<b>(a)
                  = O(n^d log(n)) if d = log<b>(a) 
                  = O(n^(log<b>(a))) if d <log<b>(a)
+    Advance master theorm: https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/
 
 Linear search:
     Sequential search made over all item one-by Recurrence relation defining
