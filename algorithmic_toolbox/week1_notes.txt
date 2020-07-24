@@ -1,9 +1,0 @@
-Testing:
-    Test on the examples from the problem statement. Then make a few other small
-    test, solve them manually and check that your program output the correct
-    answer. Generate a big input and launch your program to check that it works
-    fast enough and doesn’t consume too much memory. Test for corner cases:
-    smallest allowed value and largest allowed value (for integer overflow) of
-    all input parameters, equal numbers in the input, very long strings etc.
-    Then make stress test (comparison between naive and implementation to be
-    connsidered with generated random inputs).
