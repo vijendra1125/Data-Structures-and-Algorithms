@@ -43,42 +43,47 @@ double minimal_dist_naive(vector<Point> p)
   return min_dist;
 }
 
-double minimal_distance_fast(vector<Point> a, int l, int r)
+double minimal_distance_fast(vector<Point> &px, vector<Point> &py, int l, int r)
 {
   if (r - l <= 2)
   {
-    double min_dist = dist(a[l], a[r]);
-    for (int i = l; i <= r; ++i)
-    {
-      for (int j = i + 1; j <= r; ++j)
-      {
-        min_dist = min(min_dist, dist(a[i], a[j]));
-      }
-    }
-    return min_dist;
+    vector<Point> mini_vec(std::make_move_iterator(px.begin() + l), std::make_move_iterator(px.begin() + r + 1));
+    return minimal_dist_naive(mini_vec);
   }
 
   int mid = (l + r) / 2;
-  double min_dl = minimal_distance_fast(a, l, mid);
-  double min_dr = minimal_distance_fast(a, mid + 1, r);
+  vector<Point> pyl;
+  vector<Point> pyr;
+  for (int i = 0; i < py.size(); ++i)
+  {
+    if (py[i].x <= px[mid].x)
+    {
+      pyl.push_back(py[i]);
+    }
+    else
+    {
+      pyr.push_back(py[i]);
+    }
+  }
+  double min_dl = minimal_distance_fast(px, pyl, l, mid);
+  double min_dr = minimal_distance_fast(px, pyr, mid + 1, r);
   double min_d = min(min_dl, min_dr);
 
   vector<Point> p_strip;
-  for (int i = l; i <= r; ++i)
+  for (int i = 0; i < py.size(); ++i)
   {
-    if (abs(a[i].x - a[mid].x) <= min_d)
+    if (abs(py[i].x - px[mid].x) <= min_d)
     {
-      p_strip.push_back(a[i]);
+      p_strip.push_back(py[i]);
     }
   }
-  sort(p_strip.begin(), p_strip.end(), comparator_y);
   for (int i = 0; i < p_strip.size(); ++i)
   {
     for (int j = i + 1; j < p_strip.size(); ++j)
     {
       if (abs(i - j) <= 7)
       {
-        min_d = min(min_d, dist(a[i], a[j]));
+        min_d = min(min_d, dist(p_strip[i], p_strip[j]));
       }
     }
   }
@@ -97,18 +102,21 @@ int main()
     std::cin >> x[i] >> y[i];
   }
 
-  vector<Point> p;
+  vector<Point> px;
+  vector<Point> py;
   for (size_t i = 0; i < x.size(); ++i)
   {
     Point pt;
     pt.x = x[i];
     pt.y = y[i];
-    p.push_back(pt);
+    px.push_back(pt);
+    py.push_back(pt);
   }
 
   std::cout << std::fixed;
   // std::cout << std::setprecision(9) << minimal_distance_naive(p) << "\n";
-  sort(p.begin(), p.end(), comparator_x);
+  sort(px.begin(), px.end(), comparator_x);
+  sort(py.begin(), py.end(), comparator_y);
   std::cout << std::setprecision(9)
-            << minimal_distance_fast(p, 0, p.size() - 1) << "\n";
+            << minimal_distance_fast(px, py, 0, px.size() - 1) << "\n";
 }

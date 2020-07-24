@@ -10,6 +10,19 @@ struct Point
   char type = ' ';
 };
 
+vector<int> naive_count_segments(vector<int> starts, vector<int> ends, vector<int> points)
+{
+  vector<int> cnt(points.size());
+  for (size_t i = 0; i < points.size(); i++)
+  {
+    for (size_t j = 0; j < starts.size(); j++)
+    {
+      cnt[i] += starts[j] <= points[i] && points[i] <= ends[j];
+    }
+  }
+  return cnt;
+}
+
 void push_data(vector<Point> &to, vector<int> &from, char type)
 {
   for (auto it = from.begin(); it != from.end(); ++it)
@@ -80,22 +93,15 @@ void merge_sort(vector<Point> &n, int l, int r)
   int mid = (r + l) / 2;
   merge_sort(n, l, mid);
   merge_sort(n, mid + 1, r);
-  vector<Point> left_vec(mid - l + 1);
-  vector<Point> right_vec(r - mid);
-  move(n.begin() + l, n.begin() + mid + 1, left_vec.begin());
-  move(n.begin() + mid + 1, n.begin() + r + 1, right_vec.begin());
+  vector<Point> left_vec(std::make_move_iterator(n.begin() + l),
+                         std::make_move_iterator(n.begin() + mid + 1));
+  vector<Point> right_vec(std::make_move_iterator(n.begin() + mid + 1),
+                          std::make_move_iterator(n.begin() + r + 1));
   merge(n, left_vec, right_vec, l, r);
 }
 
-vector<int> fast_count_segments(vector<int> starts, vector<int> ends, vector<int> points)
+vector<int> get_counts(vector<Point> &n)
 {
-  vector<Point> n;
-  push_data(n, starts, 's');
-  push_data(n, ends, 'e');
-  push_data(n, points, 'p');
-
-  merge_sort(n, 0, n.size() - 1);
-
   vector<int> cnt;
   int count = 0;
   for (auto it = n.begin(); it != n.end(); ++it)
@@ -116,17 +122,14 @@ vector<int> fast_count_segments(vector<int> starts, vector<int> ends, vector<int
   return cnt;
 }
 
-vector<int> naive_count_segments(vector<int> starts, vector<int> ends, vector<int> points)
+vector<int> fast_count_segments(vector<int> &starts, vector<int> &ends, vector<int> points)
 {
-  vector<int> cnt(points.size());
-  for (size_t i = 0; i < points.size(); i++)
-  {
-    for (size_t j = 0; j < starts.size(); j++)
-    {
-      cnt[i] += starts[j] <= points[i] && points[i] <= ends[j];
-    }
-  }
-  return cnt;
+  vector<Point> n;
+  push_data(n, starts, 's');
+  push_data(n, ends, 'e');
+  push_data(n, points, 'p');
+  merge_sort(n, 0, n.size() - 1);
+  return get_counts(n);
 }
 
 int main()
@@ -143,13 +146,14 @@ int main()
   {
     std::cin >> points[i];
   }
-  //use fast_count_segments
+
   // vector<int> cnt = naive_count_segments(starts, ends, points);
   // for (size_t i = 0; i < cnt.size(); i++)
   // {
   //   std::cout << cnt[i] << ' ';
   // }
   // std::cout << '\n';
+
   vector<int> cnt2 = fast_count_segments(starts, ends, points);
   for (size_t i = 0; i < cnt2.size(); i++)
   {
