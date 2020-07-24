@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cstdlib>
 
+using std::cin;
+using std::cout;
+
 int gcd_naive(int a, int b)
 {
   int current_gcd = 1;
@@ -40,33 +43,42 @@ int gcd_fast(int a, int b)
 
 void stress_test()
 {
-  for (int i = 0; i < 50; ++i)
+  int stress_iteration = 20;
+  int max_number = 2 * 1000000000;
+
+  for (int i = 0; i < stress_iteration; ++i)
   {
-    int a = rand();
-    int b = rand();
+    int a = rand() % max_number;
+    int b = rand() % max_number;
+
     int naive = gcd_naive(a, b);
     int fast = gcd_fast(a, b);
-    if (naive != fast)
+    if (naive == fast)
     {
-      std::cout << a << " " << b << " "
-                << "wrong " << naive << " " << fast << "\n";
-      break;
+      cout << "a = " << a << "; "
+           << "b = " << b << " "
+           << "OK" << '\n';
     }
     else
     {
-      std::cout << a << " " << b << " "
-                << "OK"
-                << "\n";
+      cout << "a = " << a << "; "
+           << "b = " << b << "; "
+           << "FAILED "
+           << "\nNaive: " << naive
+           << "\nFast: " << fast << '\n';
+      break;
     }
   }
 }
 
 int main()
 {
-  //stress_test();
+  // stress_test();
+
   int a, b;
-  std::cin >> a >> b;
-  //std::cout << gcd_naive(a, b) << std::endl;
-  std::cout << gcd_fast(a, b) << std::endl;
-  return 0;
+  cin >> a >> b;
+
+  //std::cout << gcd_naive(a, b) << '\n';
+
+  cout << gcd_fast(a, b) << '\n';
 }

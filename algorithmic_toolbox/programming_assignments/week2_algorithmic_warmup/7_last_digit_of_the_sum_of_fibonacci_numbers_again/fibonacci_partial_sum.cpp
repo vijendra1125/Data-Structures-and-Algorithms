@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+using std::cin;
+using std::cout;
 using std::vector;
 
 long long get_fibonacci_partial_sum_naive(long long from, long long to)
@@ -65,10 +67,44 @@ int get_fibonacci_partial_sum_fast(long long from, long long to)
            m;
 }
 
+void stress_test()
+{
+    int stress_iteration = 75;
+    int max_number = 75;
+
+    for (int i = 0; i < stress_iteration; ++i)
+    {
+        int to = rand() % max_number;
+        int from = rand() % to;
+
+        int naive = get_fibonacci_partial_sum_naive(from, to);
+        int fast = get_fibonacci_partial_sum_fast(from, to);
+        if (naive == fast)
+        {
+            cout << "from = " << from << "; "
+                 << "to = " << to << " "
+                 << "OK" << '\n';
+        }
+        else
+        {
+            cout << "from = " << from << "; "
+                 << "to = " << to << " "
+                 << "FAILED "
+                 << "\nNaive: " << naive
+                 << "\nFast: " << fast << '\n';
+            break;
+        }
+    }
+}
+
 int main()
 {
+    // stress_test();
+
     long long from, to;
-    std::cin >> from >> to;
+    cin >> from >> to;
+
     // std::cout << get_fibonacci_partial_sum_naive(from, to) << '\n';
-    std::cout << get_fibonacci_partial_sum_fast(from, to) << '\n';
+
+    cout << get_fibonacci_partial_sum_fast(from, to) << '\n';
 }

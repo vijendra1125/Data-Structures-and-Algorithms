@@ -7,7 +7,7 @@ using std::cin;
 using std::cout;
 using std::vector;
 
-long long MaxPairwiseProduct(const std::vector<int> &numbers)
+long long max_pairwise_product_naive(const vector<int> &numbers)
 {
     long long max_product = 0;
     int n = numbers.size();
@@ -22,7 +22,7 @@ long long MaxPairwiseProduct(const std::vector<int> &numbers)
     return max_product;
 }
 
-long long MaxPairwiseProductFast(const vector<int> &number)
+long long max_pairwise_product_fast(const vector<int> &number)
 {
     int n = number.size();
     int max_index1 = -1;
@@ -44,16 +44,17 @@ long long MaxPairwiseProductFast(const vector<int> &number)
     return ((long long)number[max_index1]) * number[max_index2];
 }
 
-void StressTest()
+void stress_test()
 {
     int stress_iteration = 50000;
-    int iteration_count = 0;
     int number_count = 100;
     int max_number = 100000;
-    while (iteration_count < stress_iteration)
+
+    for (int i = 0; i < stress_iteration; ++i)
     {
         int n = rand() % number_count + 2;
         cout << "number of entry: " << n << "\n";
+        cout << "numbers: ";
         vector<int> numbers;
         for (int i = 0; i < n; ++i)
         {
@@ -61,26 +62,28 @@ void StressTest()
             numbers.push_back(number);
             cout << number << ' ';
         }
-        cout << "\n";
-        long long result = MaxPairwiseProduct(numbers);
-        long long result_fast = MaxPairwiseProductFast(numbers);
-        if (result != result_fast)
+        cout << '\n';
+
+        long long result = max_pairwise_product_naive(numbers);
+        long long result_fast = max_pairwise_product_fast(numbers);
+        if (result == result_fast)
         {
-            cout << "wrong answer: " << result << " " << result_fast << "\n";
-            break;
+            cout << "OK" << '\n';
         }
         else
         {
-            cout << "OK"
-                 << "\n";
-            iteration_count++;
+            cout << "FAILED: "
+                 << "\nNaive: " << result
+                 << "\nFast: " << result_fast << '\n';
+            break;
         }
     }
 }
 
 int main()
 {
-    //StressTest();
+    //stress_test();
+
     int n;
     std::cin >> n;
     vector<int> numbers(n);
@@ -88,9 +91,10 @@ int main()
     {
         std::cin >> numbers[i];
     }
-    // long long result = MaxPairwiseProduct(numbers);
-    long long result_fast = MaxPairwiseProductFast(numbers);
-    //cout << result << "\n";
-    cout << result_fast << "\n";
-    return 0;
+
+    // long long result = max_pairwise_product_naive(numbers);
+    //cout << result << '\n';
+
+    long long result_fast = max_pairwise_product_fast(numbers);
+    cout << result_fast << '\n';
 }

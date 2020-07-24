@@ -1,5 +1,8 @@
 #include <iostream>
 
+using std::cin;
+using std::cout;
+
 long long lcm_naive(int a, int b)
 {
   for (long l = 1; l <= (long long)a * b; ++l)
@@ -32,33 +35,43 @@ long long lcm_fast(int a, int b)
 
 void stress_test()
 {
-  for (int i = 0; i < 50; ++i)
+  int stress_iteration = 50;
+  int max_number = 10000;
+
+  for (int i = 0; i < stress_iteration; ++i)
   {
-    int a = rand() % 1000;
-    int b = rand() % 1000;
+    int a = rand() % max_number;
+    int b = rand() % max_number;
+
     long long naive = lcm_naive(a, b);
     long long fast = lcm_fast(a, b);
-    if (naive != fast)
+    if (naive == fast)
     {
-      std::cout << a << " " << b << " "
-                << "wrong " << naive << " " << fast << "\n";
-      break;
+      cout << "a = " << a << "; "
+           << "b = " << b << " "
+           << "OK"
+           << "\n";
     }
     else
     {
-      std::cout << a << " " << b << " "
-                << "OK"
-                << "\n";
+      cout << "a = " << a << "; "
+           << "b = " << b << " "
+           << "FAILED "
+           << "\nNaive: " << naive
+           << "\nFast: " << fast << "\n";
+      break;
     }
   }
 }
 
 int main()
 {
-  //stress_test();
+  // stress_test();
+
   int a, b;
-  std::cin >> a >> b;
-  // std::cout << lcm_naive(a, b) << std::endl;
-  std::cout << lcm_fast(a, b) << std::endl;
-  return 0;
+  cin >> a >> b;
+
+  // cout << lcm_naive(a, b) << '\n';
+
+  cout << lcm_fast(a, b) << '\n';
 }

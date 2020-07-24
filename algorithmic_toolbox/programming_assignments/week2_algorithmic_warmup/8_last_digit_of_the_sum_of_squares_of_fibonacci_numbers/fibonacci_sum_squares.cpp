@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+using std::cin;
+using std::cout;
 using std::vector;
 
 int fibonacci_sum_squares_naive(long long n)
@@ -63,10 +65,41 @@ int fibonacci_sum_squares_fast(long long n)
            m;
 }
 
+void stress_test()
+{
+    int stress_iteration = 10;
+    int max_number = 10;
+
+    for (int i = 0; i < stress_iteration; ++i)
+    {
+        int n = rand() % max_number + 2;
+
+        int naive = fibonacci_sum_squares_naive(n);
+        int fast = fibonacci_sum_squares_fast(n);
+        if (naive == fast)
+        {
+            cout << "n = " << n << "; "
+                 << "OK" << '\n';
+        }
+        else
+        {
+            cout << "n = " << n << "; "
+                 << "FAILED "
+                 << "\nNaive: " << naive
+                 << "\nFast: " << fast << '\n';
+            break;
+        }
+    }
+}
+
 int main()
 {
+    // stress_test();
+
     long long n = 0;
     std::cin >> n;
+
     // std::cout << fibonacci_sum_squares_naive(n) << "\n";
+
     std::cout << fibonacci_sum_squares_fast(n) << "\n";
 }

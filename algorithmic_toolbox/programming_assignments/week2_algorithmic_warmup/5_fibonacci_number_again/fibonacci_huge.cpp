@@ -1,4 +1,9 @@
 #include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::vector;
 
 long long get_fibonacci_huge_naive(long long n, long long m)
 {
@@ -18,47 +23,71 @@ long long get_fibonacci_huge_naive(long long n, long long m)
     return current % m;
 }
 
-int get_pisano_period_length(int m)
+void get_pisano_period(long long m, vector<long long> &pisano_period)
 {
-    int previous = 0;
-    int current = 1;
-    int pisano_period_length = 0;
+    long long previous = 0;
+    long long current = 1;
+    pisano_period.push_back(previous);
+    pisano_period.push_back(current);
+
     do
     {
-        int temp = (previous + current) % m;
+        long long temp = (previous + current) % m;
         previous = current;
         current = temp;
-        pisano_period_length++;
+        pisano_period.push_back(current);
     } while (!((previous == 0) && (current == 1)));
-
-    return pisano_period_length;
-}
-
-int fibonacci_mod(int n, int m)
-{
-    int previous = 0;
-    int current = 1;
-    for (int i = 2; i <= n; ++i)
-    {
-        int temp = (previous + current) % m;
-        previous = current;
-        current = temp;
-    }
-    return current;
+    pisano_period.pop_back();
+    pisano_period.pop_back();
 }
 
 long long get_fibonacci_huge_fast(long long n, long long m)
 {
-    int pisano_length = get_pisano_period_length(m);
-    int n_mod_pisano_length = n % pisano_length;
-    return fibonacci_mod(n_mod_pisano_length, m);
+    vector<long long> pisano_period;
+    get_pisano_period(m, pisano_period);
+    long long n_mod_pisano_length = n % pisano_period.size();
+    return pisano_period[n_mod_pisano_length];
+}
+
+void stress_test()
+{
+    int stress_iteration = 75;
+    long long max_number = 75;
+
+    for (int i = 0; i < stress_iteration; ++i)
+    {
+        long long a = rand() % max_number + 2;
+        long long b = rand() % max_number + 2;
+
+        long long naive = get_fibonacci_huge_naive(a, b);
+        long long fast = get_fibonacci_huge_fast(a, b);
+        if (naive == fast)
+        {
+            cout << "a = " << a << "; "
+                 << "b = " << b << " "
+                 << "OK" << '\n';
+        }
+        else
+        {
+            cout << "a = " << a << "; "
+                 << "b = " << b << " "
+                 << "FAILED "
+                 << "\nNaive: " << naive
+                 << "\nFast: " << fast << '\n';
+            break;
+        }
+    }
 }
 
 int main()
 {
+    // stress_test();
+
     long long n;
-    int m;
-    std::cin >> n >> m;
-    // std::cout << get_fibonacci_huge_naive(n, m) << '\n';
-    std::cout << get_fibonacci_huge_fast(n, m) << '\n';
+    long long m;
+    cin >> n >> m;
+
+    // cout << get_fibonacci_huge_naive(n, m) << '\n';
+
+    cout << get_fibonacci_huge_fast(n, m) << '\n';
 }
