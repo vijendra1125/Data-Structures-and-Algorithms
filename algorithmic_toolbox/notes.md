@@ -41,9 +41,7 @@
   * Using above, in order to calculate caclate $F_{n}$ mod m where n is very large:
     * Find pisano period length for 'mod m' by finding index where *"0 1"* appears again while claculating mod
     * Divide n by pisano period length of 'mod m' to get reminder r, $F_{r}$ mod m will be equal to $F_{n}$ mod m
-* Note:
-        (a+b)%n = ((a%n) + (b%n)) % n <- use it with property of fibonacci
-        number ($F_{n} = F_{n-1} + F_{n-2}$) and it will help you many fibonacci numbers problems
+* Note: (a+b)%n = ((a%n) + (b%n)) % n <- use it with property of fibonacci number ($F_{n} = F_{n-1} + F_{n-2}$) and it will help you many fibonacci numbers problems
 
 ## Gereatest Common Divisor:
 * For integers $a$ and $b$, $gcd(a,b)$ is greatest integer which divides both. 
@@ -144,7 +142,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
 * Runtime compexity: $O(log_{2}n)$
 
 ### Polynomial multipication:
-* Naive: 
+#### Naive: 
   * Idea: 
   For two polynomials of order n-1, say, 
   $\newline
@@ -164,7 +162,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   c_{0} = a_{0}b_{0} \newline$
   Use above idea using two iterative loop to calculate all the coefficients. Notice that coeffiecent $c_{k}$ is sum of all those $a_{i}b_{j}$ such that i+j = k. 
   * Runtime complexity: O(n^(2))
-* Naive divide and conquer: 
+#### Naive divide and conquer: 
   * Idea: 
   Consider two polnomials, 
   $\newline
@@ -182,7 +180,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Hence, we could write recursive realtion as
   $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
   * Runtime complexity: O(n^(log<2>4)) or O(n^2)
-* Fast divide and conquer:
+#### Fast divide and conquer:
   * Idea: 
   $x = ac + ad + bc + bd$ involves 4 multiplications whereas same could be done with just 3 multiplication because $bc + bd = (a+b)(c+d) - ac - ad$
    * Divide problem into 3 sub-problem at each level using above concept
@@ -204,7 +202,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Initially, the sorted part is empty and the unsorted part is the entire list.The smallest element is selected from the unsorted array and swapped with the leftmost element, and that element becomes a part of the sorted array. This process continues moving unsorted array boundary by one element to the right.
   * Runtime-complexity: O(n^2)
 
-* Merge sort:
+#### Merge sort:
   * It uses divide-and-conquer algorithm startegy to solve sorting problem. It recursively divides the array into equal halves, sort them and then combines them in a sorted manner till subproblem size is one. For combinig, it simply checks first element of the sorted array and move the one which is smaller to a the array storing combined array till both  sorted array reduce to size 0.
   * Runtime complexity:
     * Recursive relation: 
@@ -213,11 +211,11 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
     * Using master theorm runtime complexity of merge sort could be given by $O(n(log(n)))$
     * Any comparison based sorting algorithm will have runtime complexity of >= O(nlog(n)) in worst case which means merge sort is asymptotically optimal but note that extra time and space which goes in moving the data to new merged array.
     
-* Counting sort: 
+#### Counting sort: 
   * Sorting without comparison if we know the range of element in integer array then scan through array and count the occurence of each element then create sorted array based  on the count.
   * Runtime complexity: $O(n+m)$ where n is number of elelment in array and m is size of the range of the element.
 
-* Randomized quick sort:
+#### Randomized quick sort:
   * Comparison based algorithm 
   * Strategy: Generate an index between lower and upper bound of array and swap first element of array with the element at generated random index. Take first element of of array $A$, call it pivot $x = A[l]$ Then move $i$ on $l+1$ to $r$ (the end of the array) maintaining following invariant:
   $\newline 
@@ -230,7 +228,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Runtime complexity: $O(nlog(n))$ (on average, while worst case runtime is o(n^2))
   * Space complexity: In general: $O(n)$ but could be reduced to: $O(log(n))$
 
-### Reading resources
+## Reading resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
   * Polynomial multiplication: Section 2.1
   * Master Theorem: Section 2.2
