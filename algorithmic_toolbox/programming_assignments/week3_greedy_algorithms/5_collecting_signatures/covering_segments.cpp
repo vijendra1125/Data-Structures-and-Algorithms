@@ -10,76 +10,63 @@ struct Segment
   int start, end;
 };
 
-bool sort_comp(Segment a, Segment b)
+struct Point
 {
-  return (a.end - a.start) < (b.end - b.start);
+  int position;
+  char type;
+};
+
+bool point_comparator(Point a, Point b)
+{
+  if (a.position < b.position)
+  {
+    return true;
+  }
+  else if (a.position == b.position)
+  {
+    return a.type >= b.type;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 vector<int> optimal_points(vector<Segment> &segments)
 {
-  sort(segments.begin(), segments.end(), sort_comp);
-
-  vector<int> points;
-  size_t start = 0;
-  while (start < segments.size())
+  vector<Point> points;
+  for (auto it = segments.begin(); it != segments.end(); ++it)
   {
-    if (start == (segments.size() - 1))
+    Point p;
+    p.position = (*it).start;
+    p.type = 's';
+    points.push_back(p);
+    p.position = (*it).end;
+    p.type = 'e';
+    points.push_back(p);
+  }
+  sort(points.begin(), points.end(), point_comparator);
+  for (int i = 0; i < points.size(); ++i)
+  {
+    std::cout << points[i].position << "(" << points[i].type << "), ";
+  }
+  std::cout << "\n";
+
+  vector<int> optimals;
+  char previous = 's';
+  for (auto it = points.begin(); it != points.end(); ++it)
+  {
+    if (((*it).type == 'e') && previous == 's')
     {
-      points.push_back(segments[start].end);
-      start++;
+      optimals.push_back((*it).position);
+      previous = 'e';
     }
     else
     {
-      Segment current_seg = segments[start];
-      bool take_start = false;
-      bool take_end = false;
-      bool take_either = false;
-      vector<int> indexes_for_removal;
-      for (auto it = (segments.begin() + start + 1); it != segments.end(); ++it)
-      {
-        bool on_right = (*it).start > current_seg.end;
-        bool on_left = (*it).end < current_seg.start;
-        if (!(on_left || on_right))
-        {
-          if (!(take_start && take_end))
-          {
-            bool temp_take_start = ((*it).end >= current_seg.start) && (*it).start <= current_seg.start;
-            bool temp_take_end = (*it).start <= current_seg.end && (*it).end >= current_seg.end;
-            if (temp_take_start && temp_take_end)
-            {
-              take_either = true;
-            }
-            else
-            {
-              take_start = take_start || temp_take_start;
-              take_end = take_end || temp_take_end;
-            }
-          }
-          indexes_for_removal.push_back(distance(segments.begin(), it));
-        }
-      }
-      if (take_start)
-      {
-        points.push_back(current_seg.start);
-      }
-      if (take_end)
-      {
-        points.push_back(current_seg.end);
-      }
-      if (take_either && (!(take_start || take_end)))
-      {
-        points.push_back(current_seg.end);
-      }
-      int index_reduction = 0;
-      for (auto i = indexes_for_removal.begin(); i != indexes_for_removal.end(); ++i)
-      {
-        segments.erase(segments.begin() + (*i) - index_reduction);
-        index_reduction++;
-      }
-      start++;
+      previous = 's';
     }
   }
-  return points;
+  return optimals;
 }
 
 int main()
@@ -91,6 +78,7 @@ int main()
   {
     std::cin >> segments[i].start >> segments[i].end;
   }
+
   vector<int> points = optimal_points(segments);
   std::cout << points.size() << "\n";
   for (size_t i = 0; i < points.size(); ++i)
