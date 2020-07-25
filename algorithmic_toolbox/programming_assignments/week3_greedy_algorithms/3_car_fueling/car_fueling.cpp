@@ -10,10 +10,10 @@ int compute_min_refills(int dist, int tank, vector<int> &stops)
 {
     stops.insert(stops.begin(), 0);
     stops.push_back(dist);
-    int left_dist = dist;
+    int remaining_dist = dist;
     int current_stop = 0;
     int refill_stop_count = 0;
-    while (left_dist > tank)
+    while (remaining_dist > tank)
     {
         for (int i = (current_stop + 1); i < stops.size(); ++i)
         {
@@ -27,7 +27,7 @@ int compute_min_refills(int dist, int tank, vector<int> &stops)
                 {
                     current_stop = i - 1;
                     refill_stop_count++;
-                    left_dist = dist - stops[i - 1];
+                    remaining_dist = dist - stops[i - 1];
                     break;
                 }
             }

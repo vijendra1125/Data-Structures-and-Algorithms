@@ -101,6 +101,9 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Reduce to subproblem (a simillar problem of smaler size) 
   * Solve the subproblem by going back to step 1
 
+## Aditional notes
+* Programming assignment 5 and 7 worth revisiting
+
 ## Additional Reading Resources
 * Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
   * Knapsack: Section 6.5

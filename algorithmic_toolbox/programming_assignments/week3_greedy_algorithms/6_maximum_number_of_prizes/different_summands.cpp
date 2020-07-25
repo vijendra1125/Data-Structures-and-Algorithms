@@ -13,7 +13,6 @@ vector<int> optimal_summands(int n)
     n -= counter;
     counter++;
   }
-  // summands[summands.size() - 1] += n;
   summands[-1] += n;
   return summands;
 }
@@ -22,6 +21,7 @@ int main()
 {
   int n;
   std::cin >> n;
+
   vector<int> summands = optimal_summands(n);
   std::cout << summands.size() << '\n';
   for (size_t i = 0; i < summands.size(); ++i)
