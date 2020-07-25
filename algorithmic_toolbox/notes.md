@@ -17,7 +17,7 @@
   * Dynamic programming
 
 # Week 1
-## Testing:
+## Testing
 * Test on the examples from the problem statement.
 * Make a few other small test, solve them manually and check that your program output the correct answer. 
 * Generate a big input and launch your program to check that it works fast enough and doesn’t consume too much memory. 
@@ -27,7 +27,7 @@
 
 # Week 2
 
-## Fibonacci numbers: 
+## Fibonacci numbers
 * $F_{n} = 0 \;\;if \;n = 0, \newline\;\;\;\;\;
 = 1 \;\;if \;n = 1, 
 \newline\;\;\;\;\;
@@ -43,12 +43,12 @@
     * Divide n by pisano period length of 'mod m' to get reminder r, $F_{r}$ mod m will be equal to $F_{n}$ mod m
 * Note: (a+b)%n = ((a%n) + (b%n)) % n <- use it with property of fibonacci number ($F_{n} = F_{n-1} + F_{n-2}$) and it will help you many fibonacci numbers problems
 
-## Gereatest Common Divisor:
+## Gereatest Common Divisor
 * For integers $a$ and $b$, $gcd(a,b)$ is greatest integer which divides both. 
 * Lemma: Let $a'$ be the reminder when a is divided by b, then 
 > $gcd(a,b) = gcd(b, a') = gcd(a', b)$
 
-## Program's runtime complexity:
+## Program's runtime complexity
 * Runtime depends on program and system used to run it. Increament because of system related factors like speed of computer, system architecture, compiler being used and detail of memory hirerarchy etc. is not so straight forward to calcuate but it multiply runtime by a (large) constant. so we need a method to measure runtime which ignore constant multiples.
 
 * Asymptotic runtime measures how runtime scale with input size. 
@@ -84,7 +84,7 @@ log_{a}(n.m) = log_{a}(n) + log_{a}(m) \newline
 n^{log_{a}(b)} = b^{(log_{a}(n)} \newline
 log_{n}(a) . log_{b}(a) = log_{b}(n)$
 
-## Additional Reading resource:
+## Additional Reading resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1stEdition). McGraw-Hill Higher Education. 2008.
   * Computing Fibonacci numbers: Section 0.2
   * Properties of Fibonacci numbers: Exercises 0.2–0.4
@@ -94,14 +94,14 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Greatest common divisor: Section 31.2
 
 # Week 3
-## Greedy Algorith
+## Greedy Algorithm
 * General strategy for greedy algorithm:
   * Come up with a greedy choice
   * Prove that this greedy choice is safe move (there is an optimal solution consistent with the first move)
   * Reduce to subproblem (a simillar problem of smaler size) 
   * Solve the subproblem by going back to step 1
 
-## Additional Reading Resource:
+## Additional Reading Resources
 * Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
   * Knapsack: Section 6.5
 
@@ -129,20 +129,20 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Advance master theorm: 
   https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/
 
-### Linear search:
+### Linear search
 * Sequential search made over all item one-by Recurrence relation defining
 * Worst case runtime: 
         T(n) = T(n-1) + c
 * Runtime complexity: O(n)
 
-### Binary search: 
+### Binary search
 * Works if data is in sorted form. 
 * Binary search looks for a particular item by comparing the middle most item of the collection. If a match occurs, then the index of item is returned. If the middle item is greater than the item, then the item is searched in the sub-array to the left of the middle item. Otherwise, the item is searched for in the sub-array to the right of the middle item. This process continues on the sub-array as well until the size of the subarray reduces to zero. 
 * If we are cutting somthing of size n into half over and over again then it takes log<2>n times before we get down to 1.
 * Runtime compexity: $O(log_{2}n)$
 
-### Polynomial multipication:
-#### Naive: 
+### Polynomial multipication
+#### Naive
   * Idea: 
   For two polynomials of order n-1, say, 
   $\newline
@@ -162,7 +162,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   c_{0} = a_{0}b_{0} \newline$
   Use above idea using two iterative loop to calculate all the coefficients. Notice that coeffiecent $c_{k}$ is sum of all those $a_{i}b_{j}$ such that i+j = k. 
   * Runtime complexity: O(n^(2))
-#### Naive divide and conquer: 
+#### Naive divide and conquer
   * Idea: 
   Consider two polnomials, 
   $\newline
@@ -180,7 +180,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * Hence, we could write recursive realtion as
   $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
   * Runtime complexity: O(n^(log<2>4)) or O(n^2)
-#### Fast divide and conquer:
+#### Fast divide and conquer
   * Idea: 
   $x = ac + ad + bc + bd$ involves 4 multiplications whereas same could be done with just 3 multiplication because $bc + bd = (a+b)(c+d) - ac - ad$
    * Divide problem into 3 sub-problem at each level using above concept
@@ -196,13 +196,13 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   b(x) b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b_{n} \newline$ 
   respectively. Next, do polynomial multiplication $c(x) = a(x)b(x)$. For each coefficient of $c$ which is greated than 9, keep the digit at unit place and add 1 to the coefficient left to it. Now replace $x$ in $c(x)$ with 10 to get product of two digits.
 
-### Sorting:
+### Sorting
 * Selection sort:
   * This sorting algorithm is an in-place comparison-based algorithm in which the list is divided into two parts, the sorted part at the left end and the unsorted part at the right end. 
   * Initially, the sorted part is empty and the unsorted part is the entire list.The smallest element is selected from the unsorted array and swapped with the leftmost element, and that element becomes a part of the sorted array. This process continues moving unsorted array boundary by one element to the right.
   * Runtime-complexity: O(n^2)
 
-#### Merge sort:
+#### Merge sort
   * It uses divide-and-conquer algorithm startegy to solve sorting problem. It recursively divides the array into equal halves, sort them and then combines them in a sorted manner till subproblem size is one. For combinig, it simply checks first element of the sorted array and move the one which is smaller to a the array storing combined array till both  sorted array reduce to size 0.
   * Runtime complexity:
     * Recursive relation: 
@@ -211,11 +211,11 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
     * Using master theorm runtime complexity of merge sort could be given by $O(n(log(n)))$
     * Any comparison based sorting algorithm will have runtime complexity of >= O(nlog(n)) in worst case which means merge sort is asymptotically optimal but note that extra time and space which goes in moving the data to new merged array.
     
-#### Counting sort: 
+#### Counting sort
   * Sorting without comparison if we know the range of element in integer array then scan through array and count the occurence of each element then create sorted array based  on the count.
   * Runtime complexity: $O(n+m)$ where n is number of elelment in array and m is size of the range of the element.
 
-#### Randomized quick sort:
+#### Randomized quick sort
   * Comparison based algorithm 
   * Strategy: Generate an index between lower and upper bound of array and swap first element of array with the element at generated random index. Take first element of of array $A$, call it pivot $x = A[l]$ Then move $i$ on $l+1$ to $r$ (the end of the array) maintaining following invariant:
   $\newline 
