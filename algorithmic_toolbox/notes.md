@@ -158,7 +158,6 @@
 
     $\hspace{9mm} = O(n^(log_{b}(a))) \;if\; d <log_{b}(a)$
   * Advance master theorm: 
-    
     https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/
 
 ### Linear search
@@ -179,11 +178,11 @@
     
     $a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0}$ and
 
-    $b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b<0>$
+    $b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b_{0}$
 
     The product polynomial will be of order 2n-1, say, 
     
-    $c(x) = c_{2n-2}x^{2n-2} + c_{2n -1}x^{2n-1}+....+c_{0} where:$
+    $c(x) = c_{2n-2}x^{2n-2} + c_{2n -1}x^{2n-1}+....+c_{0}$ where:
 
     $c_{2n-2} = a<_{n-1}b_{n-1}$
 
@@ -205,7 +204,7 @@
   
     $a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0}$ and
 
-    $b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b<0>$
+    $b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b_{0}$
 
     We could write,
 
@@ -251,7 +250,7 @@
   * Runtime complexity:
     * Recursive relation: 
     
-      $T(n) = 2T(n/2) + O(n) \\$
+      $T(n) = 2T(n/2) + O(n)$
 
       where $O(n)$ is time combine the solved subproblems
     * Using master theorm runtime complexity of merge sort could be given by $O(n(log(n)))$
