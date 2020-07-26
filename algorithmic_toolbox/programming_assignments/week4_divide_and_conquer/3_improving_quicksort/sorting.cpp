@@ -5,6 +5,11 @@
 using std::swap;
 using std::vector;
 
+struct Partition
+{
+  int m1, m2;
+};
+
 int partition2(vector<int> &a, int l, int r)
 {
   int x = a[l];
@@ -21,35 +26,29 @@ int partition2(vector<int> &a, int l, int r)
   return j;
 }
 
-struct Partition
-{
-  int m1, m2;
-};
-
 Partition partition3(vector<int> &a, int l, int r)
 {
   int x = a[l];
-  int j = l;
-  int k = 0;
+  int j1 = l;
+  int j2 = l;
   for (int i = l + 1; i <= r; i++)
   {
     if (a[i] < x)
     {
-      j++;
-      swap(a[j], a[j + k]);
-      swap(a[i], a[j]);
+      j1++;
+      j2++;
+      swap(a[i], a[j1]);
     }
     else if (a[i] == x)
     {
-      k++;
-      k += j;
-      swap(a[i], a[k]);
+      j2++;
     }
   }
-  swap(a[l], a[j]);
+  swap(a[l], a[j2]);
+
   Partition m;
-  m.m1 = j;
-  m.m2 = j + k;
+  m.m1 = j1;
+  m.m2 = j2;
 
   return m;
 }
