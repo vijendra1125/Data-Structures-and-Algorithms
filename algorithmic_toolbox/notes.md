@@ -27,6 +27,7 @@
 * Make stress test (comparison between naive and implementation to be considered with generated random inputs).
 
 
+
 # Week 2
 ## Fibonacci numbers
 * Fibonnaci series is defined as
@@ -48,13 +49,11 @@
     * Divide n by pisano period length of 'mod m' to get reminder r, $F_{r}$ mod m will be equal to $F_{n}$ mod m
 * Note: (a+b)%n = ((a%n) + (b%n)) % n <- use it with property of fibonacci number ($F_{n} = F_{n-1} + F_{n-2}$) and it will help you many fibonacci numbers problems
 
-
 ## Gereatest Common Divisor
 * For integers $a$ and $b$, $gcd(a,b)$ is greatest integer which divides both. 
 * Lemma: Let $a'$ be the reminder when a is divided by b, then 
   
   $gcd(a,b) = gcd(b, a') = gcd(a', b)$
-
 
 ## Program's runtime complexity
 * Runtime depends on program and system used to run it. Increament because of system related factors like speed of computer, system architecture, compiler being used and detail of memory hirerarchy etc. is not so straight forward to calcuate but it multiply runtime by a (large) constant. so we need a method to measure runtime which ignore constant multiples.
@@ -102,7 +101,6 @@
     
     $log_{n}(a) . log_{b}(a) = log_{b}(n)$
 
-
 ## Additional Reading resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1stEdition). McGraw-Hill Higher Education. 2008.
   * Computing Fibonacci numbers: Section 0.2
@@ -121,10 +119,6 @@
   * Prove that this greedy choice is safe move (there is an optimal solution consistent with the first move)
   * Reduce to subproblem (a simillar problem of smaler size) 
   * Solve the subproblem by going back to step 1
-
-
-## Aditional notes
-* Programming assignment 5 and 7 worth revisiting
 
 ## Additional Reading Resources
 * Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
