@@ -28,9 +28,10 @@
 # Week 2
 
 ## Fibonacci numbers
-* $F_{n} = 0 \;\;if \;n = 0, \newline\;\;\;\;\;
+* $F_{n} = 0 \;\;if \;n = 0, 
+\\ \;\;\;\;\;
 = 1 \;\;if \;n = 1, 
-\newline\;\;\;\;\;
+\\ \;\;\;\;\;
 = F_{n-1} + F_{n-2} \;\;if \;n > 1$
 
 * Fibonacci number grows as fast as power of 2, for eaxmple $F_{30}$ is over a million and $F_{100}$ already have 21 digits. In general 
@@ -64,7 +65,7 @@
     * Multiplicative constant could be omitted 
     * Leave lower order term which becomes less significant as n grows and hence $5n^2 + 3n + 2$ becomes $O(n^2)$.
     * Note that growth rate of $5n^2 + 3n + 2$ is same as $n^2$
-    * In order to keep bigger picture, we treat two functions equivalent if they differ only by multiplicative constant such that $f1/f2 <= constant1 \newline and \newline f2/f2 <= constant2$ 
+    * In order to keep bigger picture, we treat two functions equivalent if they differ only by multiplicative constant such that $f1/f2 <= constant1 \\ and \\ f2/f2 <= constant2$ 
   * Benefit of using Big-O notation: 
     * Clarifies growth-rate
     * Cleans up notation
@@ -79,9 +80,9 @@
   * Addition of n-bit number takes time roughly propotional to n
 
 * Useful logarithms for runtime measurement:
-> $log_{a}(n^k) = k.log_{a}(n) \newline
-log_{a}(n.m) = log_{a}(n) + log_{a}(m) \newline
-n^{log_{a}(b)} = b^{(log_{a}(n)} \newline
+> $log_{a}(n^k) = k.log_{a}(n) \\
+log_{a}(n.m) = log_{a}(n) + log_{a}(m) \\
+n^{log_{a}(b)} = b^{(log_{a}(n)} \\
 log_{n}(a) . log_{b}(a) = log_{b}(n)$
 
 ## Additional Reading resources
@@ -122,12 +123,12 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
 
 ### Master theorm
   * Provides recurrance relation to find runtime complexity of most of the divide-and-conquer procedures:
-  If $\newline T(n) = aT({\lceil}(n/b){\rceil}) + O(n^d) \newline$ 
+  If $\\ T(n) = aT({\lceil}(n/b){\rceil}) + O(n^d) \\$ 
   for some constant a>0; b>1; d>=0. Then,
   $T(n) = O(n^d) \;if\; d > log_{b}(a)
-  \newline \;\;\;\;\;\;\;\;\;
+  \\ \;\;\;\;\;\;\;\;\;
   = O(n^d log(n)) \;if\; d = log_{b}(a) 
-  \newline \;\;\;\;\;\;\;\;\;
+  \\ \;\;\;\;\;\;\;\;\;
   = O(n^(log_{b}(a))) \;if\; d <log_{b}(a)$
   * Advance master theorm: 
   https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/
@@ -145,58 +146,58 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
 * Runtime compexity: $O(log_{2}n)$
 
 ### Polynomial multipication
-#### Naive
+* Naive
   * Idea: 
   For two polynomials of order n-1, say, 
-  $\newline
+  $\\
   a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0} 
-  \newline and \newline
+  \\ and \\
   b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b<0> 
-  \newline$
+  \\$
   The product polynomial will be of order 2n-1, say, 
-  $\newline
+  $\\
   c(x) = c_{2n-2}x^{2n-2} + c_{2n -1}x^{2n-1}+....+c_{0} 
-  \newline where: \newline
-  c_{2n-2} = a<_{n-1}b_{n-1} \newline
+  \\ where: \\
+  c_{2n-2} = a<_{n-1}b_{n-1} \\
   c_{2n-3} = a_{n-1}b_{n-2} + a_{n-2}b_{n-1}
-  \newline ... \newline
-  c_{2} = a_{2}b_{0} + a_{1}b_{1} + a_{0}b_{2} \newline
-  c_{1} = a_{1}b_{0} + a_{0}b_{1} \newline
-  c_{0} = a_{0}b_{0} \newline$
+  \\ ... \\
+  c_{2} = a_{2}b_{0} + a_{1}b_{1} + a_{0}b_{2} \\
+  c_{1} = a_{1}b_{0} + a_{0}b_{1} \\
+  c_{0} = a_{0}b_{0} \\$
   Use above idea using two iterative loop to calculate all the coefficients. Notice that coeffiecent $c_{k}$ is sum of all those $a_{i}b_{j}$ such that i+j = k. 
   * Runtime complexity: O(n^(2))
-#### Naive divide and conquer
+* Naive divide and conquer
   * Idea: 
   Consider two polnomials, 
-  $\newline
+  $\\
   a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0} 
-  \newline and \newline
+  \\ and \\
   b(x) = b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b<0> 
-  \newline$ 
+  \\$ 
   We could write,
-  $\newline
+  $\\
   a(x) = d_{1}(x)x^{n/2} + d_{0}(x)b(x) = e_{1}(x)x^{n/2} + e_{0}(x) 
-  \newline then \newline
-  a(x)b(x) = (d_{1}e_{1})x^{n} + (d_{1}e_{0} + d_{0}e_{1})x^{n/2} + d_{0}e_{0} \newline$
+  \\ then \\
+  a(x)b(x) = (d_{1}e_{1})x^{n} + (d_{1}e_{0} + d_{0}e_{1})x^{n/2} + d_{0}e_{0} \\$
   * Note: we could always pad the polynomial in a way that n is multiple of 2. 
   * Divide problem of size n into 4 subproblem of size n/2 using above idea and keep doing it recursively till its become subproblems of size 1.
   * Hence, we could write recursive realtion as
   $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
   * Runtime complexity: O(n^(log<2>4)) or O(n^2)
-#### Fast divide and conquer
+* Fast divide and conquer
   * Idea: 
   $x = ac + ad + bc + bd$ involves 4 multiplications whereas same could be done with just 3 multiplication because $bc + bd = (a+b)(c+d) - ac - ad$
    * Divide problem into 3 sub-problem at each level using above concept
   * Hence, we could write recursive realtion as $T(n) = 3T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
   * Runtime complexity: $O(n^{log_{2}3)})$ or $O(n^{1.59})$ which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above
-  * Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. For two n digit numbers $\newline a = a_{1}a_{2}...a_{n} 
-  \newline and \newline 
-  b = b_{1}b_{2}...b_{n} \newline$
+  * Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. For two n digit numbers $\\ a = a_{1}a_{2}...a_{n} 
+  \\ and \\ 
+  b = b_{1}b_{2}...b_{n} \\$
   create two polynomials 
-  $\newline 
+  $\\ 
   a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{n} 
-  \newline and \newline 
-  b(x) b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b_{n} \newline$ 
+  \\ and \\ 
+  b(x) b_{1}x^{n-1} + b_{2}x^{n-2} + ... + b_{n} \\$ 
   respectively. Next, do polynomial multiplication $c(x) = a(x)b(x)$. For each coefficient of $c$ which is greated than 9, keep the digit at unit place and add 1 to the coefficient left to it. Now replace $x$ in $c(x)$ with 10 to get product of two digits.
 
 ### Sorting
@@ -209,7 +210,7 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
   * It uses divide-and-conquer algorithm startegy to solve sorting problem. It recursively divides the array into equal halves, sort them and then combines them in a sorted manner till subproblem size is one. For combinig, it simply checks first element of the sorted array and move the one which is smaller to a the array storing combined array till both  sorted array reduce to size 0.
   * Runtime complexity:
     * Recursive relation: 
-    $\newline T(n) = 2T(n/2) + O(n) \newline$
+    $\\ T(n) = 2T(n/2) + O(n) \\$
     where $0(n)$ is time combine the solved subproblems
     * Using master theorm runtime complexity of merge sort could be given by $O(n(log(n)))$
     * Any comparison based sorting algorithm will have runtime complexity of >= O(nlog(n)) in worst case which means merge sort is asymptotically optimal but note that extra time and space which goes in moving the data to new merged array.
@@ -221,12 +222,12 @@ log_{n}(a) . log_{b}(a) = log_{b}(n)$
 #### Randomized quick sort
   * Comparison based algorithm 
   * Strategy: Generate an index between lower and upper bound of array and swap first element of array with the element at generated random index. Take first element of of array $A$, call it pivot $x = A[l]$ Then move $i$ on $l+1$ to $r$ (the end of the array) maintaining following invariant:
-  $\newline 
+  $\\ 
   A[k] <= x \;for \;all\; l+1 <= k <=j_{1}
-  \newline
+  \\
   A[k] = x \;for \;all\; j_{1}+1 <= k <= j_{2}
-  \newline 
-  A[k] >= x \;for \;all\; j_{2}+1 <= k <= r \newline$
+  \\ 
+  A[k] >= x \;for \;all\; j_{2}+1 <= k <= r \\$
   you can do this by starting with $j = l$ and as you increment $i$, incrementing $j$ by 1 followed by swapping $A[j]$ with $A[i]$ when you  encounter $A[i] > x$. At the end move $A[l]$ to its final place by swapping $A[l]$ and $A[j]$. Do it recursively to sort the complete array
   * Runtime complexity: $O(nlog(n))$ (on average, while worst case runtime is o(n^2))
   * Space complexity: In general: $O(n)$ but could be reduced to: $O(log(n))$
