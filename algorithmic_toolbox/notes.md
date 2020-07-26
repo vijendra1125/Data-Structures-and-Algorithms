@@ -156,23 +156,23 @@
   
     $\hspace{9mm} = O(n^d log(n)) \;if\; d = log_{b}(a)$ 
 
-    $\hspace{9mm} = O(n^(log_{b}(a))) \;if\; d <log_{b}(a)$
+    $\hspace{9mm} = O(n^{log_{b}(a)}) \;if\; d <log_{b}(a)$
   * Advance master theorm: 
     https://www.geeksforgeeks.org/advanced-master-theorem-for-divide-and-conquer-recurrences/
 
 ### Linear search
-* Sequential search made over all item one-by Recurrence relation defining
-* Worst case runtime: $T(n) = T(n-1) + c$
+* Sequential search made over all item one-by-one 
+* Recurrence relation defining worst case runtime: $T(n) = T(n-1) + c$
 * Runtime complexity: O(n)
 
 ### Binary search
 * Works if data is in sorted form. 
 * Binary search looks for a particular item by comparing the middle most item of the collection. If a match occurs, then the index of item is returned. If the middle item is greater than the item, then the item is searched in the sub-array to the left of the middle item. Otherwise, the item is searched for in the sub-array to the right of the middle item. This process continues on the sub-array as well until the size of the subarray reduces to zero. 
-* If we are cutting somthing of size n into half over and over again then it takes $log_{2}(n)$ times before we get down to 1.
-* Runtime compexity: $O(log_{2}(n))$
+* If we are cutting something of size n into half over and over again then it takes $log_{2}(n)$ times before we get down to 1.
+* Runtime compexity: $O(log_{2}(n))$, same could be found by applying master theorm
 
 ### Polynomial multipication
-* Naive
+#### Naive
   * Idea: 
   For two polynomials of order n-1, say, 
     
@@ -182,9 +182,11 @@
 
     The product polynomial will be of order 2n-1, say, 
     
-    $c(x) = c_{2n-2}x^{2n-2} + c_{2n -1}x^{2n-1}+....+c_{0}$ where:
+    $c(x) = c_{2n-2}x^{2n-2} + c_{2n -1}x^{2n-1}+....+c_{0}$ 
+    
+    where:
 
-    $c_{2n-2} = a<_{n-1}b_{n-1}$
+    $c_{2n-2} = a_{n-1}b_{n-1}$
 
     $c_{2n-3} = a_{n-1}b_{n-2} + a_{n-2}b_{n-1}$
   
@@ -198,7 +200,7 @@
 
     Use above idea using two iterative loop to calculate all the coefficients. Notice that coeffiecent $c_{k}$ is sum of all those $a_{i}b_{j}$ such that i+j = k. 
   * Runtime complexity: O(n^(2))
-* Naive divide and conquer
+#### Naive divide and conquer
   * Idea: 
   Consider two polnomials, 
   
@@ -208,7 +210,9 @@
 
     We could write,
 
-    $a(x) = d_{1}(x)x^{n/2} + d_{0}(x)b(x) = e_{1}(x)x^{n/2} + e_{0}(x)$
+    $a(x) = d_{1}(x)x^{n/2} + d_{0}(x)$ and
+    
+    $b(x) = e_{1}(x)x^{n/2} + e_{0}(x)$
   
     then
 
@@ -216,15 +220,24 @@
   * Note: we could always pad the polynomial in a way that n is multiple of 2. 
   * Divide problem of size n into 4 subproblem of size n/2 using above idea and keep doing it recursively till its become subproblems of size 1.
   * Hence, we could write recursive realtion as
-  $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
-  * Runtime complexity: $O(n^(log_{2}4))$ or $O(n^2)$
-* Fast divide and conquer
+  $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems). In the idea discussed above you could see how a.b being problem of size n is rewritten as 4 problems $d_{1}e_{1}, d_{1}e_{1}, d_{0}e_{1}, d_{0}e_{0}$ of size n/2.
+  * Runtime complexity:  from master theorm $O(n^{log_{2}4})$ or $O(n^2)$
+#### Fast divide and conquer
   * Idea: 
   $x = ac + ad + bc + bd$ involves 4 multiplications whereas same could be done with just 3 multiplication because $bc + bd = (a+b)(c+d) - ac - ad$
    * Divide problem into 3 sub-problem at each level using above concept
-  * Hence, we could write recursive realtion as $T(n) = 3T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
-  * Runtime complexity: $O(n^{log_{2}3)})$ or $O(n^{1.59})$ which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above
-  * Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. For two n digit numbers 
+  * Hence, we could write recursive relation as $T(n) = 3T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
+  * Runtime complexity: using master theorm $O(n^{log_{2}(3)})$ or $O(n^{1.59})$ which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above.
+  * Prove of runtime complexity without master theorm (seeeing this example will help you calculate runtime complexity where master theorm will not help):
+    * Since at each stage recursion we are dividing problem of size n to total 3 subproblem of size n/2 each, number of subproblem at each stage will be $3^{i}$ where i is the stage number
+    * Time spend to combine result of each subproblem at stage i = $k.(n/2^{i})$
+    * total number of stages = log_{2}(n)
+    * hence total runtime will we sum of geometric series 
+  
+      $k.n + k.n/2^{1} + ... + k.2^{i} + ... + k.n/2^{log_{2}(n)}$ 
+    
+      which is $3^{(log_{2}(n))}  = \Theta(n^(log_{2}(3))$
+* Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. For two n digit numbers 
     $a = a_{1}a_{2}...a_{n}$ and
 
     $b = b_{1}b_{2}...b_{n}$
@@ -240,13 +253,12 @@
     Next, do polynomial multiplication $c(x) = a(x)b(x)$. For each coefficient of $c$ which is greated than 9, keep the digit at unit place and add 1 to the coefficient left to it. Now replace $x$ in $c(x)$ with 10 to get product of two digits.
 
 ### Sorting
-* Selection sort:
-  * This sorting algorithm is an in-place comparison-based algorithm in which the list is divided into two parts, the sorted part at the left end and the unsorted part at the right end. 
-  * Initially, the sorted part is empty and the unsorted part is the entire list.The smallest element is selected from the unsorted array and swapped with the leftmost element, and that element becomes a part of the sorted array. This process continues moving unsorted array boundary by one element to the right.
+#### Selection sort:
+  * This sorting algorithm is an in-place comparison-based algorithm in which the list is divided into two parts, the sorted part at the left end and the unsorted part at the right end. Initially, the sorted part is empty and the unsorted part is the entire list.The smallest element is selected from the unsorted array and swapped with the leftmost element, and that element becomes a part of the sorted array. This process continues moving unsorted array boundary by one element to the right.
   * Runtime-complexity: $O(n^2)$
 
 #### Merge sort
-  * It uses divide-and-conquer algorithm startegy to solve sorting problem. It recursively divides the array into equal halves, sort them and then combines them in a sorted manner till subproblem size is one. For combinig, it simply checks first element of the sorted array and move the one which is smaller to a the array storing combined array till both  sorted array reduce to size 0.
+  * It uses divide-and-conquer algorithm startegy to solve sorting problem. It recursively divides the array into equal halves, and then combines them in a sorted manner till subproblem size is one. For combinig, it simply checks first element of the sorted array and move the one which is smaller to a the array storing combined array till both sorted array reduce to size 0.
   * Runtime complexity:
     * Recursive relation: 
     
@@ -254,7 +266,7 @@
 
       where $O(n)$ is time combine the solved subproblems
     * Using master theorm runtime complexity of merge sort could be given by $O(n(log(n)))$
-    * Any comparison based sorting algorithm will have runtime complexity of >= O(nlog(n)) in worst case which means merge sort is asymptotically optimal but note that extra time and space which goes in moving the data to new merged array.
+    * Any comparison based sorting algorithm will have runtime complexity of >= O(nlog(n)) in worst case which means merge sort is asymptotically optimal.
     
 #### Counting sort
   * Sorting without comparison if we know the range of element in integer array then scan through array and count the occurence of each element then create sorted array based  on the count.
@@ -262,7 +274,7 @@
 
 #### Randomized quick sort
   * Comparison based algorithm 
-  * Strategy: Generate an index between lower and upper bound of array and swap first element of array with the element at generated random index. Take first element of of array $A$, call it pivot $x = A[l]$ Then move $i$ on $l+1$ to $r$ (the end of the array) maintaining following invariant:
+  * Strategy: Generate an index between lower and upper bound of array and swap first element of array with the element at generated random index. Take first element of array $A$, call it pivot $x = A[l]$ then iterate (lets say with iteration index i) on $l+1$ to $r$ (the end of the array) maintaining following invariant:
     
     $A[k] <= x \;for \;all\; l+1 <= k <=j_{1}$
     
@@ -270,7 +282,7 @@
 
     $A[k] >= x \;for \;all\; j_{2}+1 <= k <= r$
 
-    you can do this by starting with $j = l$ and as you increment $i$, incrementing $j$ by 1 followed by swapping $A[j]$ with $A[i]$ when you  encounter $A[i] > x$. At the end move $A[l]$ to its final place by swapping $A[l]$ and $A[j]$. Do it recursively to sort the complete array
+    you can do this by starting with $j = l$ and as you increment $i$, incrementing $j_{1}$ and $j_{2}$ by 1 followed by swapping $A[j_{1}]$ with $A[i]$ when you  encounter $A[i] > x$ and incrementing only $j_{2}$ when you encounter $A[i] = x$. At the end move $A[l]$ to its final place by swapping $A[l]$ and $A[j]$. Do it recursively to sort the complete array
   * Runtime complexity: $O(nlog(n))$ (on average, while worst case runtime is o(n^2))
   * Space complexity: In general: $O(n)$ but could be reduced to: $O(log(n))$
 
