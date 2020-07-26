@@ -173,7 +173,7 @@
 
 ### Polynomial multipication
 #### Naive
-  * Idea: 
+* Idea: 
   For two polynomials of order n-1, say, 
     
     $a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0}$ and
@@ -200,9 +200,9 @@
 
     Use above idea using two iterative loop to calculate all the coefficients. Notice that coeffiecent $c_{k}$ is sum of all those $a_{i}b_{j}$ such that i+j = k. 
   * Runtime complexity: O(n^(2))
+
 #### Naive divide and conquer
-  * Idea: 
-  Consider two polnomials, 
+* Idea: Consider two polnomials, 
   
     $a(x) = a_{1}x^{n-1} + a_{2}x^{n-2} + ... + a_{0}$ and
 
@@ -217,26 +217,29 @@
     then
 
     $a(x)b(x) = (d_{1}e_{1})x^{n} + (d_{1}e_{0} + d_{0}e_{1})x^{n/2} + d_{0}e_{0}$
-  * Note: we could always pad the polynomial in a way that n is multiple of 2. 
-  * Divide problem of size n into 4 subproblem of size n/2 using above idea and keep doing it recursively till its become subproblems of size 1.
-  * Hence, we could write recursive realtion as
+
+* Note: we could always pad the polynomial in a way that n is multiple of 2. 
+* Divide problem of size n into 4 subproblem of size n/2 using above idea and keep doing it recursively till its become subproblems of size 1.
+* Hence, we could write recursive realtion as
   $T(n) = 4T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems). In the idea discussed above you could see how a.b being problem of size n is rewritten as 4 problems $d_{1}e_{1}, d_{1}e_{1}, d_{0}e_{1}, d_{0}e_{0}$ of size n/2.
-  * Runtime complexity:  from master theorm $O(n^{log_{2}4})$ or $O(n^2)$
+* Runtime complexity:  from master theorm $O(n^{log_{2}4})$ or $O(n^2)$
+
 #### Fast divide and conquer
-  * Idea: 
+* Idea: 
   $x = ac + ad + bc + bd$ involves 4 multiplications whereas same could be done with just 3 multiplication because $bc + bd = (a+b)(c+d) - ac - ad$
-   * Divide problem into 3 sub-problem at each level using above concept
-  * Hence, we could write recursive relation as $T(n) = 3T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
-  * Runtime complexity: using master theorm $O(n^{log_{2}(3)})$ or $O(n^{1.59})$ which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above.
-  * Prove of runtime complexity without master theorm (seeeing this example will help you calculate runtime complexity where master theorm will not help):
-    * Since at each stage recursion we are dividing problem of size n to total 3 subproblem of size n/2 each, number of subproblem at each stage will be $3^{i}$ where i is the stage number
-    * Time spend to combine result of each subproblem at stage i = $k.(n/2^{i})$
-    * total number of stages = log_{2}(n)
-    * hence total runtime will we sum of geometric series 
+* Divide problem into 3 sub-problem at each level using above concept
+* Hence, we could write recursive relation as $T(n) = 3T(n/2) + O(n)$ where $O(n)$ is time required to evaluate expression (apart from solving subproblems)
+* Runtime complexity: using master theorm $O(n^{log_{2}(3)})$ or $O(n^{1.59})$ which significant reduction in runtime complexcity in compare to naive divide-and-conquer because of recursive application of small trick mentioned above.
+* Prove of runtime complexity without master theorm (seeeing this example will help you calculate runtime complexity where master theorm will not help):
+  * Since at each stage recursion we are dividing problem of size n to total 3 subproblem of size n/2 each, number of subproblem at each stage will be $3^{i}$ where i is the stage number
+  * Time spend to combine result of each subproblem at stage i = $k.(n/2^{i})$
+  * total number of stages = log_{2}(n)
+  * hence total runtime will we sum of geometric series 
   
-      $k.n + k.n/2^{1} + ... + k.2^{i} + ... + k.n/2^{log_{2}(n)}$ 
+    $k.n + k.n/2^{1} + ... + k.2^{i} + ... + k.n/2^{log_{2}(n)}$ 
     
-      which is $3^{(log_{2}(n))}  = \Theta(n^(log_{2}(3))$
+    which is $3^{(log_{2}(n))}  = \Theta(n^(log_{2}(3))$
+
 * Note: Idea of polynomial multipication could be easily applied to multiplication of two n digit numbers. For two n digit numbers 
     $a = a_{1}a_{2}...a_{n}$ and
 
