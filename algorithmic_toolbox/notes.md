@@ -291,3 +291,19 @@
 * Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
   * Quick sort: Chapter 7
 
+
+# Week 5 
+## Dynamic Programming
+* In dynamic programming a problem is solved by identifying a collection of subproblems and tackling them one by one, smallest first, using the answers to small problems to help figure out larger ones, until the whole lot of them is solved.
+* Very good presentaion from course: https://www.dropbox.com/s/qxzh146jd72188d/dynprog.pdf?dl=0
+* Steps:
+  * Define recursive relation
+  * define bounday case
+  * add memoization
+  * convert recursive to iterative (if possible)
+  
+## Reading Resources
+* Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
+  * Edit distance: Section 6.3
+* Phillip Compeau, Pavel Pevzner. Bioinformatics Algorithms: An Active Learning Approach. Active Learning Publishers. 2014.
+  * Change problem: Section "An Introduction to Dynamic Programming: The Change Problem"
