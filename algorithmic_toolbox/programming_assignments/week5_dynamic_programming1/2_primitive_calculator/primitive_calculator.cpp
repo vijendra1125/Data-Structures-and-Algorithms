@@ -78,7 +78,7 @@ void fill_mem(int n, vector<MetaData> &t)
       fill_mem(n - 1, t);
     }
     ops_add1 = t[n - 1].ops;
-    int min_ops = min(min(ops_mul3, ops_mul2), ops_add1);
+    int min_ops = min({ops_mul3, ops_mul2, ops_add1});
 
     t[n].ops = min_ops + 1;
     if (min_ops == ops_add1)
