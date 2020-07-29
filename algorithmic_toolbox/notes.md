@@ -299,8 +299,8 @@
 * Steps:
   * Define recursive relation
   * Define bounday case
-  * Wrap recurrence realtion with memoization (remeber one can fill memory iteratively instead of recurively)
-  * Recurive relation could be converted to iterative one
+  * Wrap recurrence realtion with memoization (remeber one can fill memory iteratively instead of recursively)
+  * Recursive relation could be converted to iterative one
   
 ## Reading Resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
