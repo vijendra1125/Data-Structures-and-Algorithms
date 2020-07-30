@@ -305,5 +305,6 @@
 ## Reading Resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
   * Edit distance: Section 6.3
+  * Knapsack: Section 6.4
 * Phillip Compeau, Pavel Pevzner. Bioinformatics Algorithms: An Active Learning Approach. Active Learning Publishers. 2014.
   * Change problem: Section "An Introduction to Dynamic Programming: The Change Problem"
