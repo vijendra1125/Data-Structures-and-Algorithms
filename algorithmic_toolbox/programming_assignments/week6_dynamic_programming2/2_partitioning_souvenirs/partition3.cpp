@@ -64,6 +64,11 @@ vector<int> find_souvenir(int value, vector<int> &souvenirs, vector<vector<int>>
 int partition3(vector<int> &A)
 {
   int value = std::accumulate(A.begin(), A.end(), 0);
+  if (value % 3 != 0)
+  {
+    return 0;
+  }
+
   int value_per_person = value / 3;
   for (int i = 0; i < 2; ++i)
   {
