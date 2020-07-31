@@ -90,6 +90,18 @@
   * Left child
   * Right child
   * Parent (optional)
+### Traversing Tree:
+  *  Order of visting nodes of tree:
+     * Depth-first Search (DFS): 
+       * Completely traverse one subtree before exploring other
+       * Type of traversal:
+         * In-order: Travel the left subtree, visit the root, travel the right subtree
+         * Pre-order: Visit the root, travel the left subtree, travel the right subtree 
+         * Post-order: Travel the left subtree, travel the right subtree, visit the root
+       * Use stack 
+     * Breadth-first Search (BFS): 
+       * Traverse all nodes at one level before progressing to the next level
+       * Use queue
 
 
 ## Reading Resources
