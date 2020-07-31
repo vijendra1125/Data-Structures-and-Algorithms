@@ -1,17 +1,16 @@
 # Week 1
 ## Array
-* *contiguous* area of memory 
-* consisting of *equal* size elements
-* indexed by *contiguous* integer
-* *Constant* time ($O(1)$) access to any particular element in array for read and write because of simple airthmatic requirement to find the address of element. 
+* contiguous area of memory 
+* consisting of equal size elements
+* indexed by contiguous integer
+* Constant time (O(1)) access to any particular element in array for read and write because of simple airthmatic requirement to find the address of element. 
 * Expensive for adition or removal of element except from end
 * Times for common operations:
-
-  |          | Add    | Remove |
-  | -------- | ------ | ------ |
-  | Begining | $O(n)$ | $O(n)$ |
-  | Middle   | $O(n)$ | $O(n)$ |
-  | End      | $O(1)$ | $O(1)$ |
+  |          | Add  | Remove |
+  | -------- | ---- | ------ |
+  | Begining | O(n) | O(n)   |
+  | Middle   | O(n) | O(n)   |
+  | End      | O(1) | O(1)   |
 
 
 ## Linked Lists
@@ -25,24 +24,23 @@
 ### Singly-Linked Lists
 * Each node contains key (value) and pointer to next node
 * Time complexity on operations on Singly-Linked List:
-
    | Singly-Linked list   | no tail | with tail |
    | -------------------- | ------- | --------- |
-   | PushFront(key)       | $O(1)$  | $O(1)$    |
-   | Key TopFront         | $O(1)$  | $O(1)$    |
-   | PopFront()           | $O(1)$  | $O(1)$    |
-   | PushBack(key)        | $O(n)$  | $O(1)$    |
-   | Key TopBack          | $O(n)$  | $O(1)$    |
-   | PopBack              | $O(n)$  | $O(n)$    |
-   | Boolean Find(key)    | $O(n)$  | $O(n)$    |
-   | Erase(key)           | $O(n)$  | $O(n)$    |
-   | Boolean Empty()      | $O(1)$  | $O(1)$    |
-   | AddBefore(node, key) | $O(n)$  | $O(n)$    |
-   | AddAfter(node, key)  | $O(1)$  | $O(1)$    |
+   | PushFront(key)       | O(1)    | O(1)      |
+   | Key TopFront         | O(1)    | O(1)      |
+   | PopFront()           | O(1)    | O(1)      |
+   | PushBack(key)        | O(n)    | O(1)      |
+   | Key TopBack          | O(n)    | O(1)      |
+   | PopBack              | O(n)    | O(n)      |
+   | Boolean Find(key)    | O(n)    | O(n)      |
+   | Erase(key)           | O(n)    | O(n)      |
+   | Boolean Empty()      | O(1)    | O(1)      |
+   | AddBefore(node, key) | O(n)    | O(n)      |
+   | AddAfter(node, key)  | O(1)    | O(1)      |
 
 ### Doubly-Linked Lists
 * Each node contains key and  two pointers, one pointing to the  next elelment and other to the previous element
-* With doubly linked list PopBack() with tail and Addbefore(node, key) becomes $O(1)$ operation
+* With doubly linked list PopBack() with tail and Addbefore(node, key) becomes O(1) operation
 * Hence, double-linked list with tail is cheap to add or remove element from anywhere in the list. Accessing elements from front (always) and back (given that it has tail) of the linked list is cheap whereas accessing elements from middle is expensive.
 
 
