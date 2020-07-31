@@ -10,6 +10,7 @@
   Simillar way for two dimensional array:
   > *elelment_address = array_address + element_size * ((row_index - total_column)+(column_index - 1))*
 * Times for common operations:
+
   |          | Add    | Remove |
   | -------- | ------ | ------ |
   | Begining | $O(n)$ | $O(n)$ |
@@ -23,6 +24,7 @@
 * Head contains pointer to first node
 * Each node contains key (value) and pointer to next node
 * Time complexity on operations on Singly-Linked List:
+
    | Singly-Linked list   | no tail | with tail |
    | -------------------- | ------- | --------- |
    | PushFront(key)       | $O(1)$  | $O(1)$    |
