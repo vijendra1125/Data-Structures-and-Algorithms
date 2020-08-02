@@ -80,7 +80,7 @@
 * Leaf: Node with no children
 * Interior node: All nodes which is non-leaf
 * Level: 1 + number of edges between root and node
-* Height: Maximum depth of subtree node and farthest leaf. Note that the leaf height are one
+* Height: Maximum depth of subtree node and farthest leaf. Note that the leafs height are one
 * Forest: Collection of trees
 ### Binary Search Trees
 * At most two childrens at each node
@@ -100,8 +100,10 @@
          * Post-order: Travel the left subtree, travel the right subtree, visit the root
        * Use stack 
      * Breadth-first Search (BFS): 
-       * Traverse all nodes at one level before progressing to the next level
        * Use queue
+       * Traverse all nodes at one level before progressing to the next level
+         * Start with root in queue
+         * Push all children of the front element in the queue and then remove the from elelment from queue till queue becomes empty
 
 
 ## Reading Resources
