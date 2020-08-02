@@ -1,8 +1,8 @@
 # Week 1
 ## Array
-* contiguous area of memory 
-* consisting of equal size elements
-* indexed by contiguous integer
+* Contiguous area of memory 
+* Consisting of equal size elements
+* Indexed by contiguous integer
 * Constant time (O(1)) access to any particular element in array for read and write because of simple airthmatic requirement to find the address of element. 
 * Expensive for adition or removal of element except from end
 * Times for common operations:
