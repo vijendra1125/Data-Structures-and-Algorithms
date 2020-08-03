@@ -113,3 +113,34 @@
   * chapter 10.1: Stack and queue
   * Chapter 10.2: Array and linked list
   * Chapter 10.4: Trees
+
+# Week 2
+## Dynamic Arrays
+* Provides possibility to change size of array during runtime
+* Idea: Store a pointer to a dinamically allocated array, and replace it with a newly allocated array as needed.
+* In C++ vector and in python list are dynamic arrays.
+* Common operation's runtime:
+  | Operation | Runtime                                                                    |
+  | --------- | -------------------------------------------------------------------------- |
+  | Get(i)    | O(1)                                                                       |
+  | Set(i)    | O(1)                                                                       |
+  | PushBack  | O(1) but in worst case (allocated array is full) O(n); Amortized cost O(1) |
+  | Remove(i) | O(n)                                                                       |
+  | Size()    | O(1)                                                                       |
+* Con: Some space is wasted 
+
+## Amortized Analysis
+* Looking at the worst-case run time per operation, rather than per algorithm, can be too pessimistic. The amortized analysis considers both the costly and less costly operations together over the whole series of operations of the algorithm.
+* Amortized cost = Cost(n Operations)/n
+### Aggregated Method
+* Aggregate analysis determines the upper bound T(n) on the total cost of a sequence of n operations, then calculates the amortized cost to be T(n) / n [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
+### Banker's Method
+* It is a form of aggregate analysis which assigns to each operation an amortized cost which may differ from its actual cost. Early operations have an amortized cost higher than their actual cost, which accumulates a saved "credit" that pays for later operations having an amortized cost lower than their actual cost. Because the credit begins at zero, the actual cost of a sequence of operations equals the amortized cost minus the accumulated credit. Because the credit is required to be non-negative, the amortized cost is an upper bound on the actual cost. Usually, many short-running operations accumulate such credit in small increments, while rare long-running operations decrease it drastically [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
+### Physicist Method
+* The potential method is a form of the accounting method where the saved credit is computed as a function (the "potential") of the state of the data structure. The amortized cost is the immediate cost plus the change in potential [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
+
+## Reading Resources
+* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
+  * chapter 17
+
+# Week 3
