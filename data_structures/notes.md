@@ -105,6 +105,8 @@
          * Start with root in queue
          * Push all children of the front element in the queue and then remove the from elelment from queue till queue becomes empty
 
+## Additional notes:
+* Programming assignmnet 5 is worth rivisiting.
 
 ## Reading Resources
 * Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
