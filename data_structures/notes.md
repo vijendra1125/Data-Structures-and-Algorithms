@@ -172,17 +172,17 @@
 * Pros of priority queueusing binary max-heap:
   * Fast: all operations work in time O(log n) (GetMax even work in O(1))
   * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
-* Heap sort:
-    * Comparison based sorting algorithm which is similar to selection sort where we find max element and then place it to the end of array and repeat same till sequence is sorted.
-    * Steps:
-      * Build array based max-heap
-      * Swap root element to last element of array, reduce size of heap by 1 and shitDown to make it complete binary tree
-      * Do above step iteratively till heap size is 1
-    * Runtime: *O*(n log(n))
-      * Runtime for building heap: *O*(n)
-      * Runtime for sorting: *O*(n log(n))
-    * No extra space required, in place sorting
 * Binay heap could be generalized in *d*-ary heap in such a way that nodes on all levels except for possibly the last one have exactly *d* children. In such case height of tree will log<sub>*d*</sub>(n) and runnning time of sift will be *O*(log<sub>*d*</sub>(n)) whereas running time of SiftDown operation will be *O*(d log<sub>*d*</sub>(n)) because at each level we find the largest among the d children.
+### Heap sort
+* Comparison based sorting algorithm which isimilar to selection sort where we find maelement and then place it to the end of array anrepeat same till sequence is sorted.
+* Steps:
+  * Build array based max-heap
+  * Swap root element to last element of arrayreduce size of heap by 1 and shitDown to makit complete binary tree
+  * Do above step iteratively till heap size is 1
+* Runtime: *O*(n log(n))
+  * Runtime for building heap: *O*(n)
+  * Runtime for sorting: *O*(n log(n))
+* No extra space required, in place sorting
 ### Disjoint Sets
 * x
 ## Reading Resources
