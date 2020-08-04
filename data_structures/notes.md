@@ -162,10 +162,10 @@
 * Remove: Change prioirty(element to be removed to infinity) + ExtractMax
 * Seeing runtime of all the operation above, we definetily want tree to be shallow and hence we need complete binary tree (all level filled except the last one which is filled from left to right)
   * A complete binary tree with n nodes has height at max O(log n)
-  * Complete binary tree could be stored as array because of following relation it holds for node i:
-    * Parent(i) = floor(i/2)
-    * Leftchild(i) = 2i
-    * RightChild(i) = 2i + 1
+  * Complete binary tree could be stored as array because of following relation it holds for node i in 0-based array:
+    * Parent(i) = floor((i-1)/2)
+    * Leftchild(i) = 2i + 1
+    * RightChild(i) = 2i + 2
   * Insert and ExtractMax (also remove by calling ExtractMax) affects the completeness of tree
   * To keep tree complete while iserting, insert it as a leaf in the leftmost vacant position in the last level and let it sift up
   * To keep tree complete while extracting max value, repalce the root by the last leafand let it sift down.
@@ -173,9 +173,19 @@
   * Fast: all operations work in time O(log n) (GetMax even work in O(1))
   * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
 * Heap sort:
-    * x
+    * Comparison based sorting algorithm which is similar to selection sort where we find max element and then place it to the end of array and repeat same till sequence is sorted.
+    * Steps:
+      * Build array based max-heap
+      * Swap root element to last element of array, reduce size of heap by 1 and shitDown to make it complete binary tree
+      * Do above step iteratively till heap size is 1
+    * Runtime: *O*(n log(n))
+      * Runtime for building heap: *O*(n)
+      * Runtime for sorting: *O*(n log(n))
+    * No extra space required, in place sorting
+* Binay heap could be generalized in *d*-ary heap in such a way that nodes on all levels except for possibly the last one have exactly *d* children. In such case height of tree will log<sub>*d*</sub>(n) and runnning time of sift will be *O*(log<sub>*d*</sub>(n)) whereas running time of SiftDown operation will be *O*(d log<sub>*d*</sub>(n)) because at each level we find the largest among the d children.
 ### Disjoint Sets
 * x
 ## Reading Resources
 * Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009
-  * Chapter 6
+  * Chapter 6: Heap
+  * chapter 6.4: Heap-sort
