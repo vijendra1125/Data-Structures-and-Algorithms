@@ -3,14 +3,14 @@
 * Contiguous area of memory 
 * Consisting of equal size elements
 * Indexed by contiguous integer
-* Constant time (O(1)) access to any particular element in array for read and write because of simple airthmatic requirement to find the address of element. 
+* Constant time (*O*(1)) access to any particular element in array for read and write because of simple airthmatic requirement to find the address of element. 
 * Expensive for adition or removal of element except from end
 * Times for common operations:
-  |          | Add  | Remove |
-  | -------- | ---- | ------ |
-  | Begining | O(n) | O(n)   |
-  | Middle   | O(n) | O(n)   |
-  | End      | O(1) | O(1)   |
+  |          | Add    | Remove |
+  | -------- | ------ | ------ |
+  | Begining | *O*(n) | *O*(n) |
+  | Middle   | *O*(n) | *O*(n) |
+  | End      | *O*(1) | *O*(1) |
 
 
 ## Linked Lists
@@ -23,24 +23,24 @@
   
 ### Singly-Linked Lists
 * Each node contains key (value) and pointer to next node
-* Time complexity on operations on Singly-Linked List:
+* Time complexity on operations on singly-Linked List:
    | Singly-Linked list   | no tail | with tail | Description          |
    | -------------------- | ------- | --------- | -------------------- |
-   | PushFront(key)       | O(1)    | O(1)      | Add to front         |
-   | Key TopFront         | O(1)    | O(1)      | Return fron item     |
-   | PopFront()           | O(1)    | O(1)      | Remove front item    |
-   | PushBack(key)        | O(n)    | O(1)      | Add to back          |
-   | Key TopBack          | O(n)    | O(1)      | Return back item     |
-   | PopBack              | O(n)    | O(n)      | Remove back time     |
-   | Boolean Find(key)    | O(n)    | O(n)      | Is key in list       |
-   | Erase(key)           | O(n)    | O(n)      | Remove key from list |
-   | Boolean Empty()      | O(1)    | O(1)      | Empty list?          |
-   | AddBefore(node, key) | O(n)    | O(n)      | Add key before node  |
-   | AddAfter(node, key)  | O(1)    | O(1)      | Add key afer node    |
+   | PushFront(key)       | *O*(1)  | *O*(1)    | Add to front         |
+   | Key TopFront         | *O*(1)  | *O*(1)    | Return fron item     |
+   | PopFront()           | *O*(1)  | *O*(1)    | Remove front item    |
+   | PushBack(key)        | *O*(n)  | *O*(1)    | Add to back          |
+   | Key TopBack          | *O*(n)  | *O*(1)    | Return back item     |
+   | PopBack              | *O*(n)  | *O*(n)    | Remove back time     |
+   | Boolean Find(key)    | *O*(n)  | *O*(n)    | Is key in list       |
+   | Erase(key)           | *O*(n)  | *O*(n)    | Remove key from list |
+   | Boolean Empty()      | *O*(1)  | *O*(1)    | Empty list?          |
+   | AddBefore(node, key) | *O*(n)  | *O*(n)    | Add key before node  |
+   | AddAfter(node, key)  | *O*(1)  | *O*(1)    | Add key afer node    |
 
 ### Doubly-Linked Lists
 * Each node contains key and  two pointers, one pointing to the  next elelment and other to the previous element
-* With doubly-linked list PopBack() (with tail) and AddBefore(node, key) becomes O(1) operation
+* With doubly-linked list PopBack() (with tail) and AddBefore(node, key) becomes *O*(1) operation
 * Hence, doubly-linked list with tail is cheap to add or remove element from anywhere in the list. 
 * Accessing elements from front (always) and back (given that it has tail) of the linked list is cheap whereas accessing elements from middle is expensive.
 
@@ -53,7 +53,7 @@
   * Boolean Empty(): is there any elements?
 * Also known as LIFO queues which means Last In First Out
 * Can be implemented either using array or linked list with both having its own pros and cons
-* All operations wil be O(1)
+* All operations wil be *O*(1)
 
 ## Queues
 * Abstract data type with following operations:
@@ -62,7 +62,7 @@
   * Boolean Empty(): are there any elements?
 * Also known as FIFO queues which means First In First Out
 * It could also be implemented using array or linked list (with tail pointer) with each having its own pros and cons
-* All operations wil be O(1) if implemented optimally
+* All operations wil be *O*(1) if implemented optimally
 
 
 ## Trees
@@ -120,13 +120,13 @@
 * Idea: Store a pointer to a dinamically allocated array, and replace it with a newly allocated array as needed.
 * In C++ vector and in python list are dynamic arrays.
 * Common operation's runtime:
-  | Operation | Runtime                                                                    |
-  | --------- | -------------------------------------------------------------------------- |
-  | Get(i)    | O(1)                                                                       |
-  | Set(i)    | O(1)                                                                       |
-  | PushBack  | O(1) but in worst case (allocated array is full) O(n); Amortized cost O(1) |
-  | Remove(i) | O(n)                                                                       |
-  | Size()    | O(1)                                                                       |
+  | Operation | Runtime                                                                      |
+  | --------- | ---------------------------------------------------------------------------- |
+  | Get(i)    | *O*(1)                                                                       |
+  | Set(i)    | *O*(1)                                                                       |
+  | PushBack  | *O*(1) but in worst case (allocated array is full) O(n); Amortized cost O(1) |
+  | Remove(i) | *O*(n)                                                                       |
+  | Size()    | *O*(1)                                                                       |
 * Con: Some space is wasted 
 
 ## Amortized Analysis
@@ -149,19 +149,19 @@
 * Naive approach:
   | Data Structure      | Insert | ExtractMax |
   | ------------------- | ------ | ---------- |
-  | Unsorted array/list | O(1)   | O(n)       |
-  | Sorted array/lsit   | O(n)   | O(1)       |
+  | Unsorted array/list | *O*(1) | *O*(n)     |
+  | Sorted array/lsit   | *O*(n) | *O*(1)     |
 ### Binary Max-heap
 * One of the method to implement priority queue
 * A binary tree with value of parent is at least equal to value of the child.
 * Here we define tree height to be equal to the number of edges on the longest path from the root to a leaf.
-* GetMax: Return the value at root of the tree. Running time O(1)
-* Insert: Attach new node to any leaf and then swap it with parent till binary max-heap property is satisfied. Running time O(tree height)
-* ExtractMax: Replace root with any leaf and keep swaping it with largest child till binary max-heap property is satisfied. Running time O(tree height)
-* Change priority: Assign new priority to node and keep swaping element with parent or largest child till binary max-heap property is satisfied. Running time O(tree height)
+* GetMax: Return the value at root of the tree. Running time *O*(1)
+* Insert: Attach new node to any leaf and then swap it with parent till binary max-heap property is satisfied. Running time *O*(tree height)
+* ExtractMax: Replace root with any leaf and keep swaping it with largest child till binary max-heap property is satisfied. Running time *O*(tree height)
+* Change priority: Assign new priority to node and keep swaping element with parent or largest child till binary max-heap property is satisfied. Running time *O*(tree height)
 * Remove: Change prioirty(element to be removed to infinity) + ExtractMax
 * Seeing runtime of all the operation above, we definetily want tree to be shallow and hence we need complete binary tree (all level filled except the last one which is filled from left to right)
-  * A complete binary tree with n nodes has height at max O(log n)
+  * A complete binary tree with n nodes has height at max *O*(log n)
   * Complete binary tree could be stored as array because of following relation it holds for node i in 0-based array:
     * Parent(i) = floor((i-1)/2)
     * Leftchild(i) = 2i + 1
@@ -170,7 +170,7 @@
   * To keep tree complete while iserting, insert it as a leaf in the leftmost vacant position in the last level and let it sift up
   * To keep tree complete while extracting max value, repalce the root by the last leafand let it sift down.
 * Pros of priority queueusing binary max-heap:
-  * Fast: all operations work in time O(log n) (GetMax even work in O(1))
+  * Fast: all operations work in time O(log n) (GetMax even work in *O*(1))
   * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
 * Binay heap could be generalized in *d*-ary heap in such a way that nodes on all levels except for possibly the last one have exactly *d* children. In such case height of tree will log<sub>*d*</sub>(n) and runnning time of sift will be *O*(log<sub>*d*</sub>(n)) whereas running time of SiftDown operation will be *O*(d log<sub>*d*</sub>(n)) because at each level we find the largest among the d children.
 ### Heap sort
