@@ -183,6 +183,7 @@
   * Runtime for building heap: *O*(n)
   * Runtime for sorting: *O*(n log(n))
 * No extra space required, in place sorting
+* Note that for quick sort on average runtime is n log(n) whereas for heap sort worst case rutime is nlog(n)
 ### Disjoint Sets
 * x
 ## Reading Resources
