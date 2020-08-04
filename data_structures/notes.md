@@ -136,7 +136,7 @@
 * Aggregate analysis determines the upper bound T(n) on the total cost of a sequence of n operations, then calculates the amortized cost to be T(n) / n [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
 ### Banker's Method
 * It is a form of aggregate analysis which assigns to each operation an amortized cost which may differ from its actual cost. Early operations have an amortized cost higher than their actual cost, which accumulates a saved "credit" that pays for later operations having an amortized cost lower than their actual cost. Because the credit begins at zero, the actual cost of a sequence of operations equals the amortized cost minus the accumulated credit. Because the credit is required to be non-negative, the amortized cost is an upper bound on the actual cost. Usually, many short-running operations accumulate such credit in small increments, while rare long-running operations decrease it drastically [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
-### Physicist Method
+### Physicist's Method
 * The potential method is a form of the accounting method where the saved credit is computed as a function (the "potential") of the state of the data structure. The amortized cost is the immediate cost plus the change in potential [[wiki](https://en.wikipedia.org/wiki/Amortized_analysis)].
 
 ## Reading Resources
@@ -144,3 +144,38 @@
   * chapter 17
 
 # Week 3
+## Priority Queues
+* A generalization of queue where each element is assigned a priority and elements come out in order by priority.
+* Naive approach:
+  | Data Structure      | Insert | ExtractMax |
+  | ------------------- | ------ | ---------- |
+  | Unsorted array/list | O(1)   | O(n)       |
+  | Sorted array/lsit   | O(n)   | O(1)       |
+### Binary Max-heap
+* One of the method to implement priority queue
+* A binary tree with value of parent is at least equal to value of the child.
+* Here we define tree height to be equal to the number of edges on the longest path from the root to a leaf.
+* GetMax: Return the value at root of the tree. Running time O(1)
+* Insert: Attach new node to any leaf and then swap it with parent till binary max-heap property is satisfied. Running time O(tree height)
+* ExtractMax: Replace root with any leaf and keep swaping it with largest child till binary max-heap property is satisfied. Running time O(tree height)
+* Change priority: Assign new priority to node and keep swaping element with parent or largest child till binary max-heap property is satisfied. Running time O(tree height)
+* Remove: Change prioirty(element to be removed to infinity) + ExtractMax
+* Seeing runtime of all the operation above, we definetily want tree to be shallow and hence we need complete binary tree (all level filled except the last one which is filled from left to right)
+  * A complete binary tree with n nodes has height at max O(log n)
+  * Complete binary tree could be stored as array because of following relation it holds for node i:
+    * Parent(i) = floor(i/2)
+    * Leftchild(i) = 2i
+    * RightChild(i) = 2i + 1
+  * Insert and ExtractMax (also remove by calling ExtractMax) affects the completeness of tree
+  * To keep tree complete while iserting, insert it as a leaf in the leftmost vacant position in the last level and let it sift up
+  * To keep tree complete while extracting max value, repalce the root by the last leafand let it sift down.
+* Pros of priority queueusing binary max-heap:
+  * Fast: all operations work in time O(log n) (GetMax even work in O(1))
+  * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
+* Heap sort:
+    * x
+### Disjoint Sets
+* x
+## Reading Resources
+* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009
+  * Chapter 6
