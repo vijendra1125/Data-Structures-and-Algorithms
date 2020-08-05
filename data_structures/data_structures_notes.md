@@ -184,6 +184,7 @@
   * Runtime for sorting: *O*(n log(n))
 * No extra space required, in place sorting
 * Note that for quick sort on average runtime is n log(n) whereas for heap sort worst case rutime is nlog(n)
+* QuickSort is usually used in practice, because typically it is faster, butHeapSort is used for external sort when you need to sort huge files that don’t fit into memory of yourcomputer.
 ## Disjoint Sets
 * Disjoint set data structure maintains collection of disjoint sets and each set is represented by its representative which is one of its members.
 * Operations supported by disjoint set data structure:
