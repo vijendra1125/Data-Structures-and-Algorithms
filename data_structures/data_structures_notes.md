@@ -173,7 +173,7 @@
   * Fast: all operations work in time O(log n) (GetMax even work in *O*(1))
   * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
 * Binay heap could be generalized in *d*-ary heap in such a way that nodes on all levels except for possibly the last one have exactly *d* children. In such case height of tree will log<sub>*d*</sub>(n) and runnning time of sift will be *O*(log<sub>*d*</sub>(n)) whereas running time of SiftDown operation will be *O*(d log<sub>*d*</sub>(n)) because at each level we find the largest among the d children.
-### Heap sort
+### Heap Sort
 * Comparison based sorting algorithm which isimilar to selection sort where we find maelement and then place it to the end of array anrepeat same till sequence is sorted.
 * Steps:
   * Build array based max-heap
@@ -190,7 +190,7 @@
   * MakeSet(x): creates a singleton set {x}
   * Find(x): returns ID of the set containing x such that if x and y lies in same set then Find(x) = Find(y) otherwise Find(x) != Find(y)
   * Union(x,y): merges two sets containing x and y
-### Tree for disjoint set
+### Tree for Disjoint Set
 * Each disjoint set is represented as rooted tree
 * Each tree is represented using linked list
 * ID of the set is the root of the tree
