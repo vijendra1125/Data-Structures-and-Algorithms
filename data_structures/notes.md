@@ -145,14 +145,14 @@
 
 # Week 3
 ## Priority Queues
-* A generalization of queue where each element is assigned a priority and elements come out in order by priority.
+* A generalization of queue where each element is assigned a priority and elements come out in order by priority. If two elements have the same priority, they are served according to their order in the queue.
 * Naive approach:
   | Data Structure      | Insert | ExtractMax |
   | ------------------- | ------ | ---------- |
   | Unsorted array/list | *O*(1) | *O*(n)     |
   | Sorted array/lsit   | *O*(n) | *O*(1)     |
 ### Binary Max-heap
-* One of the method to implement priority queue
+* Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list with runtime of *O*(log(n)) for both Insert and ExtratMax operation
 * A binary tree with value of parent is at least equal to value of the child.
 * Here we define tree height to be equal to the number of edges on the longest path from the root to a leaf.
 * GetMax: Return the value at root of the tree. Running time *O*(1)
@@ -184,9 +184,32 @@
   * Runtime for sorting: *O*(n log(n))
 * No extra space required, in place sorting
 * Note that for quick sort on average runtime is n log(n) whereas for heap sort worst case rutime is nlog(n)
-### Disjoint Sets
-* x
+## Disjoint Sets
+* Disjoint set data structure maintains collection of disjoint sets and each set is represented by its representative which is one of its members.
+* Operations supported by disjoint set data structure:
+  * MakeSet(x): creates a singleton set {x}
+  * Find(x): returns ID of the set containing x such that if x and y lies in same set then Find(x) = Find(y) otherwise Find(x) != Find(y)
+  * Union(x,y): merges two sets containing x and y
+### Tree for disjoint set
+* Each disjoint set is represented as rooted tree
+* Each tree is represented using linked list
+* ID of the set is the root of the tree
+* If i is the root of the tree, then parent[i] = i hence MakeSet works by pointing the element to itself
+* If i is not the root of his tree, then it can be found by traveling up the tree until we find the representative. Hence for finding ID of the tree an element belong to runtime will be *O*(tree height)
+* Since runtime of Find operation is *O*(tree height), we want tree to be as shallow as possible and hence for Union we hang tree of smaller height from root of the tree with larger height. It is known as Union by rank heuristic
+* In order to quickly find height we will keep the height of each subtree in an array of rank[1 ... n]: rank[i] is the height of subtree whose root is i
+* Lemma: Height of any tree in the forest is atmost log<sub>2</sub>(n) which implies running time all operation in this data structure will be at most log<sub>2</sub>(n).
+* Another lemma in order to prove above lemma: Any tree of height k in the forest has at least 2<sup>k</sup> nodes.
+* Path Compression:
+  * It speeds up the data structure by compressing the height of the trees.
+  * As we traverse through tree, after finding root we know that same is also root to the nodes we passed through while travesing and hence we could attach all these nodes we have passed through to the root for compressing height of the tree. It could be done simply using recusion during Find operation and updatig the parent of nodes as we pass through. 
+  * Iterated logarithm (log<sup>*</sup> n): Number of times the logarithmic function need to be applied to n before the result is less than or equal to 1. Since iterated logarithm of value in range [65537, 2<sup>65536</sup>] is 5, for practical value of n, iterated algorithm will always be <= 5.
+  * Lemma: Assume that initially the data structure is empty. We mae a sequence of m operations including n calls to MakeSet. Then total runtime is *O*(m log<sup>*</sup> n) 
+  * From above lemma, amortized time of a single operation will be *O*(log<sup>*</sup> n) and hene nearly constant since iterated rogarithm for all practical value will be <=5.
 ## Reading Resources
 * Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009
   * Chapter 6: Heap
   * chapter 6.4: Heap-sort
+  * chapters 21.1 and 21.2: Disjoint sets
+* Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008
+  * Section 5.1.4: Efficient disjoint set
