@@ -54,6 +54,7 @@ private:
       next_free_time[next_worker] += duration;
     }
   }
+
   void AssignJobsFast()
   {
     assigned_workers_.resize(jobs_.size());
@@ -82,31 +83,22 @@ private:
         }
         if (thread_finish_time[parent_id].second > thread_finish_time[child_id].second)
         {
-          pair<int, long long> temp = thread_finish_time[parent_id];
-          thread_finish_time[parent_id] = thread_finish_time[child_id];
-          thread_finish_time[child_id] = temp;
+          std::swap(thread_finish_time[parent_id], thread_finish_time[child_id]);
           parent_id = child_id;
         }
         else if (thread_finish_time[parent_id].second == thread_finish_time[child_id].second)
         {
           if (thread_finish_time[parent_id].first > thread_finish_time[child_id].first)
           {
-            pair<int, long long> temp = thread_finish_time[parent_id];
-            thread_finish_time[parent_id] = thread_finish_time[child_id];
-            thread_finish_time[child_id] = temp;
+            std::swap(thread_finish_time[parent_id], thread_finish_time[child_id]);
             parent_id = child_id;
           }
           else
-          {
             break;
-          }
         }
         else
-        {
           break;
-        }
       }
-
       start_times_[priority_job_id] = thread_finish_time[0].second;
       assigned_workers_[priority_job_id] = thread_finish_time[0].first;
       thread_finish_time[0].second += jobs_[priority_job_id];

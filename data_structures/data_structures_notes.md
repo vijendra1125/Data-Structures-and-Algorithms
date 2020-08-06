@@ -153,38 +153,39 @@
   | Sorted array/lsit   | *O*(n) | *O*(1)     |
 ### Binary Max-heap
 * Heap is generally preferred for priority queue implementation because heaps provide better performance compared arrays or linked list with runtime of *O*(log(n)) for both Insert and ExtratMax operation
-* A binary tree with value of parent is at least equal to value of the child.
+* A binary max-heap is a binary tree with value of parent at least equal to value of the child.
 * Here we define tree height to be equal to the number of edges on the longest path from the root to a leaf.
-* GetMax: Return the value at root of the tree. Running time *O*(1)
-* Insert: Attach new node to any leaf and then swap it with parent till binary max-heap property is satisfied. Running time *O*(tree height)
-* ExtractMax: Replace root with any leaf and keep swaping it with largest child till binary max-heap property is satisfied. Running time *O*(tree height)
-* Change priority: Assign new priority to node and keep swaping element with parent or largest child till binary max-heap property is satisfied. Running time *O*(tree height)
-* Remove: Change prioirty(element to be removed to infinity) + ExtractMax
-* Seeing runtime of all the operation above, we definetily want tree to be shallow and hence we need complete binary tree (all level filled except the last one which is filled from left to right)
+* Operations on binary max-heap:
+  * GetMax: Return the value at root of the tree. Running time *O*(1)
+  * Insert: Attach new node to any leaf and then SiftUp (keep swapping it with parent as long as you find it greater than parent and its not root). *O*(tree height)
+  * ExtractMax: Replace root with any leaf and SiftDown (keep swapping it with largest child till as long as its smaller than or equal to both childs). Running time *O*(tree height)
+  * Change priority: Assign new priority to node and perform SiftUp or SiftDown operation till binary max-heap property is satisfied. Running time *O*(tree height)
+  * Remove: Change prioirty(element to be removed to infinity) + ExtractMax
+* Complete tree: Seeing runtime of all the operation above, we definetily want tree to be shallow and hence we need complete binary tree (all level filled except the last one which is filled from left to right)
   * A complete binary tree with n nodes has height at max *O*(log n)
   * Complete binary tree could be stored as array because of following relation it holds for node i in 0-based array:
     * Parent(i) = floor((i-1)/2)
     * Leftchild(i) = 2i + 1
     * RightChild(i) = 2i + 2
-  * Insert and ExtractMax (also remove by calling ExtractMax) affects the completeness of tree
-  * To keep tree complete while iserting, insert it as a leaf in the leftmost vacant position in the last level and let it sift up
-  * To keep tree complete while extracting max value, repalce the root by the last leafand let it sift down.
-* Pros of priority queueusing binary max-heap:
+  * Insert and ExtractMax operation(also Remove operation as it calls ExtractMax) affects the completeness of tree
+  * To keep tree complete while inserting, insert it as a leaf in the leftmost vacant position in the last level and let it sift up
+  * To keep tree complete while extracting max value, repalce the root by the last leaf and let it sift down.
+* Pros of priority queue using binary max-heap:
   * Fast: all operations work in time O(log n) (GetMax even work in *O*(1))
   * Space efficient: we store an array of priorities, parent child connection are not stored but computed on the fly
 * Binay heap could be generalized in *d*-ary heap in such a way that nodes on all levels except for possibly the last one have exactly *d* children. In such case height of tree will log<sub>*d*</sub>(n) and runnning time of sift will be *O*(log<sub>*d*</sub>(n)) whereas running time of SiftDown operation will be *O*(d log<sub>*d*</sub>(n)) because at each level we find the largest among the d children.
 ### Heap Sort
-* Comparison based sorting algorithm which isimilar to selection sort where we find maelement and then place it to the end of array anrepeat same till sequence is sorted.
+* Comparison based sorting algorithm which isimilar to selection sort where we find max element and then place it to the end of array and repeat same till sequence is sorted.
 * Steps:
-  * Build array based max-heap
-  * Swap root element to last element of arrayreduce size of heap by 1 and shitDown to makit complete binary tree
+  * Build array based max-heap by iteration over node (floor(n/2)) to 1 to perform SiftDown operation 
+  * Swap root element to last element of array, reduce size of heap by 1 and perform SiftDown for root
   * Do above step iteratively till heap size is 1
-* Runtime: *O*(n log(n))
-  * Runtime for building heap: *O*(n)
-  * Runtime for sorting: *O*(n log(n))
+* Runtime: *O*(*n*log(n))
+  * Runtime for building heap: *O*(n). In general if we see it looks *O*(*n*log(n)) but since a node closer to node will have lesser number of SiftDown overall number of sum of operations comes to 2n.
+  * Runtime for sorting: *O*(*n*log(n))
 * No extra space required, in place sorting
-* Note that for quick sort on average runtime is n log(n) whereas for heap sort worst case rutime is nlog(n)
-* QuickSort is usually used in practice, because typically it is faster, butHeapSort is used for external sort when you need to sort huge files that don’t fit into memory of yourcomputer.
+* Note that for quick sort on average runtime is *n*log(n) whereas for heap sort worst case rutime is *n*log(n)
+* QuickSort is usually used in practice, because typically it is faster, but HeapSort is used for external sort when you need to sort huge files that don’t fit into memory of yourcomputer.
 ## Disjoint Sets
 * Disjoint set data structure maintains collection of disjoint sets and each set is represented by its representative which is one of its members.
 * Operations supported by disjoint set data structure:

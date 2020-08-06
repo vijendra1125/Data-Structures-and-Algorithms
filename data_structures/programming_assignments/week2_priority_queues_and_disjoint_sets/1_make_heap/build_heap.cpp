@@ -42,8 +42,6 @@ private:
     // and saves the resulting sequence of swaps.
     // This turns the given array into a heap,
     // but in the worst case gives a quadratic number of swaps.
-    //
-    // TODO: replace by a more efficient implementation
     for (int i = 0; i < data_.size(); ++i)
       for (int j = i + 1; j < data_.size(); ++j)
       {
@@ -55,23 +53,28 @@ private:
       }
   }
 
+  void SiftDown(int i)
+  {
+    int max_index = i;
+    int left_index = ((2 * i) + 1);
+    int right_index = ((2 * i) + 2);
+    if ((left_index < data_.size()) && (data_[max_index] > data_[left_index]))
+      max_index = left_index;
+    if ((right_index < data_.size()) && (data_[max_index] > data_[right_index]))
+      max_index = right_index;
+    if (max_index != i)
+    {
+      swap(data_[max_index], data_[i]);
+      swaps_.push_back(make_pair(i, max_index));
+      SiftDown(max_index);
+    }
+  }
+
   void GenerateSwapsFast()
   {
-    for (int i = data_.size() - 1; i > 0; --i)
+    for (int i = ((data_.size() - 1) / 2); i >= 0; --i)
     {
-      int idx = i;
-      int parent_idx = (i - 1) / 2;
-      while (data_[idx] <= data_[parent_idx])
-      {
-        int temp = data_[idx];
-        data_[idx] = data_[parent_idx];
-        data_[parent_idx] = temp;
-        swaps_.push_back(make_pair(parent_idx, idx));
-        idx = parent_idx;
-        parent_idx = (idx - 1) / 2;
-        if (idx == 0)
-          break;
-      }
+      SiftDown(i);
     }
   }
 
@@ -83,10 +86,10 @@ public:
     GenerateSwapsFast();
     WriteResponse();
 
-    // for (int i = 0; i < data_.size(); ++i)
-    // {
-    //   std::cout << data_[i] << " ";
-    // }
+    for (int i = 0; i < data_.size(); ++i)
+    {
+      std::cout << data_[i] << " ";
+    }
   }
 };
 
