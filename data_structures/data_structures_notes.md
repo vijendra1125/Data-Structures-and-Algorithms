@@ -206,8 +206,8 @@
   * It speeds up the data structure by compressing the height of the trees.
   * As we traverse through tree, after finding root we know that same is also root to the nodes we passed through while travesing and hence we could attach all these nodes we have passed through to the root for compressing height of the tree. It could be done simply using recusion during Find operation and updatig the parent of nodes as we pass through. 
   * Iterated logarithm (log<sup>*</sup> n): Number of times the logarithmic function need to be applied to n before the result is less than or equal to 1. Since iterated logarithm of value in range [65537, 2<sup>65536</sup>] is 5, for practical value of n, iterated algorithm will always be <= 5.
-  * Lemma: Assume that initially the data structure is empty. We mae a sequence of m operations including n calls to MakeSet. Then total runtime is *O*(m log<sup>*</sup> n) 
-  * From above lemma, amortized time of a single operation will be *O*(log<sup>*</sup> n) and hene nearly constant since iterated rogarithm for all practical value will be <=5.
+  * Lemma: Assume that initially the data structure is empty. We made a sequence of m operations including n calls to MakeSet. Then total runtime is *O*(m log<sup>*</sup> n) 
+  * From above lemma, amortized time of a single operation will be *O*(log<sup>*</sup> n) and hene nearly constant since iterated logarithm for all practical value will be <=5.
 ## Reading Resources
 * Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009
   * Chapter 6: Heap
