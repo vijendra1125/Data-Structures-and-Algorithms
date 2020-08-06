@@ -181,7 +181,7 @@
   * Swap root element to last element of array, reduce size of heap by 1 and perform SiftDown for root
   * Do above step iteratively till heap size is 1
 * Runtime: *O*(*n*log(n))
-  * Runtime for building heap: *O*(n). In general if we see it looks *O*(*n*log(n)) but since a node closer to node will have lesser number of SiftDown overall number of sum of operations comes to 2n.
+  * Runtime for building heap: *O*(n). In general if we see it looks *O*(*n*log(n)) but since closer a node closer to leaf node, lesser the number of operations during SiftDown. Hence overall sum of number of operations comes to 2n.
   * Runtime for sorting: *O*(*n*log(n))
 * No extra space required, in place sorting
 * Note that for quick sort on average runtime is *n*log(n) whereas for heap sort worst case rutime is *n*log(n)
@@ -205,6 +205,7 @@
 * Path Compression:
   * It speeds up the data structure by compressing the height of the trees.
   * As we traverse through tree, after finding root we know that same is also root to the nodes we passed through while travesing and hence we could attach all these nodes we have passed through to the root for compressing height of the tree. It could be done simply using recusion during Find operation and updatig the parent of nodes as we pass through. 
+  * Note that as we do path compression, rank of a tree is not actual tree height but upper bound to it.
   * Iterated logarithm (log<sup>*</sup> n): Number of times the logarithmic function need to be applied to n before the result is less than or equal to 1. Since iterated logarithm of value in range [65537, 2<sup>65536</sup>] is 5, for practical value of n, iterated algorithm will always be <= 5.
   * Lemma: Assume that initially the data structure is empty. We made a sequence of m operations including n calls to MakeSet. Then total runtime is *O*(m log<sup>*</sup> n) 
   * From above lemma, amortized time of a single operation will be *O*(log<sup>*</sup> n) and hene nearly constant since iterated logarithm for all practical value will be <=5.
