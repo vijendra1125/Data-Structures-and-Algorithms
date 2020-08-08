@@ -216,3 +216,55 @@
   * chapters 21.1 and 21.2: Disjoint sets
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008
   * Section 5.1.4: Efficient disjoint set
+
+# Week 4
+## Hashing
+* Suppose you have a record with keys and some data associated with each key. Given a record, the basic operation you may want to run will be:
+  * Searching for the data associated with a key
+  * Inserting a new key and associated data
+  * Deleting a existing key and associated data
+* An example of the record could be log of students profile (name, age, address, contact etc) keyed with his/her roll number. Here you might want to know:
+  * Given a roll number, retrieve data associated with it
+  * Delete a roll number and associated data
+  * Add a new roll number and associated data
+* Another example will be log of time of access to a server keyed with IP address. Here you might want to know:
+  * If server was accessed in last 1 hour
+  * If it was accessed then by which IP address it was accessed
+  * Given an IP address, how many times it was accessed in last one hour etc.
+  
+### Direct Addressing
+* Lets say we have an array, which will be called as direct address table, with its length equal to maximum possible value of key in a record. We could use indexes of array as keys to store the data associated with each key as array element. This will lead to *O*(1) searching, insetion and deletion of data relatd to particular key wheras we will be wasting a lot of memory, we will need to know maximum value of key beforehand and sometimes maximum will be too large to practically accomodate. 
+* 
+### Hash Function 
+* For any set of objects S and any integer m > 0, a function h: S -> {0, 1, ..., m - 1} is called hash function.
+* 'm' is called cardinality of hash function 'h'.
+* Desirable properties of hash function:
+  * 'h' should be fast to compute
+  * It should provide different value for diferent objects
+  * Should be able to help with achieving direct addressing scheme with small amount of memory *O*(m)
+* Impossible to have all different values if number of different possible objects |s| is more than m. Sunch cases will have collision (When h(o<sub>1</sub>) = h(o<sub>2</sub>) but o<sub>1</sub> ! = o<sub>2</sub>) and it need to be handled using some collison handling technique.
+
+### Chaining
+* Chaninig is one of the collision hadling technique
+* The idea is to make each cell of hash table point to a linked list of records that have same hash function value.
+* Memory consumption is *O*(n+m) where is m is number of slots in hash table and n is number of keys to be iserted
+* Opertations work in time *O*(c+1) where c is load factor = n/m
+
+### Hash table
+* An array that stores pointers to records corresponding to a given hash value. 
+* It could be implemented in form of map or set which uses hashing (for example using chaining)
+* For example set and map in c++ could be found implemented as unordered_set and unordered map respectively wheras in python its implemented as set and dict respectively
+* Map: map from S to V is a data structure with method
+  * HashKey(O): find if there is entry in the map corresponding to object O
+  * Get(O): return the value correspoding to object O, if no value then return a special value
+  * Set(O, v) where O belongs to S and v belongs to V: Sets the value corresponding to object O to v
+* Set: It is a data structure which have at least three methods: Add(O), Remove(O), Find(O)
+* Two ways to implement a set using chaining:
+  * Set is equivalent to map S to V where V  = {true, false}
+  * Better way, store just object O instead of pair (O, v) in chains
+
+## Reading Resources
+* Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008:
+  * Chapter 1.5.1
+* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009:
+  * Chapeter 11.1 and 11.2
