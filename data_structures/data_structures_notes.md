@@ -233,27 +233,24 @@
   * Given an IP address, how many times it was accessed in last one hour etc.
   
 ### Direct Addressing
-* Lets say we have an array, which will be called as direct address table, with its length equal to maximum possible value of key in a record. We could use indexes of array as keys to store the data associated with each key as array element. This will lead to *O*(1) searching, insetion and deletion of data relatd to particular key wheras we will be wasting a lot of memory, we will need to know maximum value of key beforehand and sometimes maximum will be too large to practically accomodate. 
-* 
+* Lets say we have an array, which will be called as direct address table, with its length equal to maximum possible number of objects in a record. We could use indexes of array as keys and store the data associated with each key as array element of corresponding index. 
+* This will lead to *O*(1) searching, insetion and deletion of data relatd to particular key wheras we will be wasting a lot of memory, we will need to know maximum value of key beforehand and sometimes maximum will be too large to practically accomodate. 
+* Idea is to overcome the problem with direct addressing by storing only active objects in a data structure.
+
 ### Hash Function 
 * For any set of objects S and any integer m > 0, a function h: S -> {0, 1, ..., m - 1} is called hash function.
-* 'm' is called cardinality of hash function 'h'.
+* *m* is called cardinality of hash function *h* and output of hash function is called hash value.
+* It is impossible to have unique hash value for each object if number of different possible objects *|s|* is more than *m*. 
+* When h(o<sub>1</sub>) = h(o<sub>2</sub>) but o<sub>1</sub> ! = o<sub>2</sub>, Such cases are called collision and it need to be handled by using some collison handling technique.
 * Desirable properties of hash function:
-  * 'h' should be fast to compute
-  * It should provide different value for diferent objects
-  * Should be able to help with achieving direct addressing scheme with small amount of memory *O*(m)
-* Impossible to have all different values if number of different possible objects |s| is more than m. Sunch cases will have collision (When h(o<sub>1</sub>) = h(o<sub>2</sub>) but o<sub>1</sub> ! = o<sub>2</sub>) and it need to be handled using some collison handling technique.
-
-### Chaining
-* Chaninig is one of the collision hadling technique
-* The idea is to make each cell of hash table point to a linked list of records that have same hash function value.
-* Memory consumption is *O*(n+m) where is m is number of slots in hash table and n is number of keys to be iserted
-* Opertations work in time *O*(c+1) where c is load factor = n/m
+  * *h* should be fast to compute
+  * It should be deteministic
+* Hash function have many application whereas major application could be seen in storage and security related problems.
 
 ### Hash table
-* An array that stores pointers to records corresponding to a given hash value. 
-* It could be implemented in form of map or set which uses hashing (for example using chaining)
-* For example set and map in c++ could be found implemented as unordered_set and unordered map respectively wheras in python its implemented as set and dict respectively
+* An array that stores pointers to objects corresponding to a given hash value. 
+* It could be implemented in form of map or set which uses hashing.
+* For example, set and map in c++ could be found implemented as unordered_set and unordered map respectively wheras in python its implemented as set and dict respectively
 * Map: map from S to V is a data structure with method
   * HashKey(O): find if there is entry in the map corresponding to object O
   * Get(O): return the value correspoding to object O, if no value then return a special value
@@ -262,6 +259,41 @@
 * Two ways to implement a set using chaining:
   * Set is equivalent to map S to V where V  = {true, false}
   * Better way, store just object O instead of pair (O, v) in chains
+
+### Chaining
+* Chaninig is one of the collision hadling technique
+* The idea is to make each cell of hash table (array in c++) point to a chain (linked list in c++) of objects that have same hash function value.
+* Memory consumption is *O*(n+m) where is m is number of slots in hash table and n is number of keys to be iserted
+* Opertations work in time *O*(c+1) where c is lenght of longest legth of chains in the hash table
+* alpha = n/m where alpha is known as load factor and shows how filled up hash table is.
+* We would like to keep m and c as small as possible.
+* Desirable properties of hash function:
+  * *h* should be fast to compute
+  * It should be deteministic
+  * As few collisions as possible
+  * Distribute keys well in different cells of hash table
+
+### Universal Hashing
+* Lemma: If number of possible keys is big (|U|>=m), for any hash function *h* there is bad input resulting in many collision.
+* In order to overcome problem mentioned in lemma above we will create a family (set) of hash functions and randomly choose hash function from it to use. Not all families of hash function will be suitable so we define the concept of univeral family.
+* Univesal family:
+  * Let *U* be the universe - set of all possible keys. A set of hash functions *H = {h: U -> {0, 1, ..., m-1}}* is called universal family if for any two keys x and y in the universe (x != y), the probabilty of collision *P[h(x) == h(y)] <= 1/m*.
+  * Lemma: If *h* is chosen randomly from a universal family, the average length of longest chain c is *O*(1 + load factor).
+  * Colloary: If h is from a universal family, operation with hash table run on average in time *O*(1 + load factor)
+* Choosing hash table size:
+  * Control amount of memory used with m
+  * Ideally, 0.5< load factor < 1
+  * Use *O*(m) = *O*(n/alpha) = *O*(n) memory to store n keys
+  * Operations run in time *O*(1+alpha) = *O*(1) on average
+* In case you dont know number of keys *n* in advance then use the idea of dynamic array. Resize hash table when alpha becomes too large (a threshold choosen between 0.5 and 1) and then choose new hash function and rehash all objects.
+* Simillar to dynamic arrays, single rehashing takes *O*(n) time, but amortized running time of each operation  with hash table is still *O*(1) on average, because rehashing will be rare.
+
+### Hashing Integers
+* Define maximum length of integer number *L*
+* Choose prime number p > 10<sup>*L*</sup>
+* Choose hash table of size m
+* Lemma: *H<sub>p</sub>* = {*h<sub>p</sub><sup>a,b</sup>*(x) = ((a.x + b) mod p) mod m} for all a,b: 1<= a<= p-1, 0<= b <= p-1 is a universal family
+* Choose random hash function from universal family *H<sub>p</sub>* (choose random a and b)
 
 ## Reading Resources
 * Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008:
